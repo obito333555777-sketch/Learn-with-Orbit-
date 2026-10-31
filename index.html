@@ -1,0 +1,1289 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f5f7f3">
+<title>ORBIT - Learn Explore Grow</title>
+
+<style>
+:root {
+  --bg:#f5f7f3;
+  --white:#ffffff;
+  --mint:#e6f1eb;
+  --sage:#66877b;
+  --dark:#344d45;
+  --blue:#dce9f5;
+  --lav:#eae4f1;
+  --cream:#f4eee2;
+  --text:#34443e;
+  --muted:#83918a;
+  --line:#e5ebe6;
+  --shadow:0 5px 25px rgba(59,85,72,.07);
+}
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html {scroll-behavior:smooth}
+
+body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+  line-height:1.6;
+}
+
+a {text-decoration:none;color:inherit}
+
+header {
+  background:rgba(255,255,255,.96);
+  padding:15px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  border-bottom:1px solid var(--line);
+}
+
+.logo {
+  font-size:25px;
+  font-weight:800;
+  letter-spacing:3px;
+  color:var(--dark);
+}
+
+.logo small {
+  display:block;
+  font-size:10px;
+  font-weight:normal;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+
+nav {
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+nav a {
+  color:#63756b;
+  font-size:13px;
+  white-space:nowrap;
+}
+
+nav a:hover {color:var(--sage)}
+
+.nav-button {
+  background:var(--sage);
+  color:white;
+  padding:10px 16px;
+  border-radius:9px;
+}
+
+.hero {
+  padding:75px 8%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:30px;
+  background:
+    radial-gradient(circle at 80% 40%,#e3eee7,transparent 45%),
+    linear-gradient(120deg,#f5f7f3,#edf3f0);
+}
+
+.tag {
+  display:inline-block;
+  padding:7px 14px;
+  border-radius:30px;
+  background:#dcebe3;
+  color:#547567;
+  font-size:12px;
+  margin-bottom:20px;
+}
+
+.hero h1 {
+  font-size:clamp(34px,5vw,55px);
+  line-height:1.2;
+  color:#354d43;
+  margin-bottom:20px;
+}
+
+.hero h1 span {color:#7b9b8c}
+
+.hero p {
+  max-width:470px;
+  color:#78877e;
+  font-size:14px;
+  margin-bottom:25px;
+}
+
+.buttons {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.btn {
+  display:inline-block;
+  padding:12px 20px;
+  background:var(--sage);
+  color:white;
+  border-radius:9px;
+  font-size:13px;
+  border:1px solid var(--sage);
+  cursor:pointer;
+}
+
+.btn-outline {
+  background:transparent;
+  color:var(--dark);
+  border-color:#d2ddd5;
+}
+
+.hero-art {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:300px;
+}
+
+.book {
+  font-size:140px;
+  filter:drop-shadow(0 10px 15px #a6c2b4);
+  animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% {transform:translateY(0)}
+  50% {transform:translateY(-12px)}
+}
+
+.container {
+  max-width:1200px;
+  margin:auto;
+  padding:40px 6%;
+}
+
+.section {
+  margin-bottom:50px;
+  scroll-margin-top:90px;
+}
+
+.heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.heading h2 {
+  font-size:23px;
+  color:#40584d;
+}
+
+.heading span {
+  color:var(--muted);
+  font-size:12px;
+}
+
+.search-area {
+  max-width:700px;
+  margin:25px auto;
+  display:flex;
+  gap:9px;
+}
+
+input,select,textarea {
+  width:100%;
+  padding:13px;
+  background:white;
+  border:1px solid #dfe7e0;
+  border-radius:9px;
+  color:var(--text);
+  font:inherit;
+  outline:none;
+}
+
+input:focus,select:focus,textarea:focus {
+  border-color:#89a99a;
+  box-shadow:0 0 0 3px #89a99a20;
+}
+
+.search-area input {flex:1}
+
+button {
+  cursor:pointer;
+  border:0;
+  font:inherit;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:17px;
+}
+
+.card {
+  padding:22px;
+  border-radius:15px;
+  border:1px solid var(--line);
+  background:white;
+  box-shadow:var(--shadow);
+  transition:.25s;
+}
+
+.card:hover {
+  transform:translateY(-4px);
+  box-shadow:0 9px 25px #536f5c15;
+}
+
+.card-icon {
+  font-size:31px;
+  margin-bottom:12px;
+}
+
+.card h3 {
+  font-size:16px;
+  margin-bottom:8px;
+  color:#435b50;
+}
+
+.card p {
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:12px;
+}
+
+.card a {
+  color:#6a8d7c;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.mint {background:#edf5ef}
+.blue {background:#edf3f9}
+.lav {background:#f1edf6}
+.cream {background:#f8f3e9}
+.peach {background:#f8eeeb}
+
+.resource-list {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:15px;
+}
+
+.resource {
+  background:white;
+  border:1px solid var(--line);
+  padding:19px;
+  border-radius:12px;
+  box-shadow:var(--shadow);
+}
+
+.resource h3 {
+  font-size:15px;
+  margin-bottom:7px;
+}
+
+.resource p {
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+
+.resource a {
+  color:#648b79;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.badge {
+  display:inline-block;
+  padding:5px 10px;
+  background:#e8f1eb;
+  color:#648171;
+  border-radius:20px;
+  font-size:11px;
+  margin-bottom:10px;
+}
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  background:#eaf2ed;
+  border-radius:15px;
+  padding:23px;
+  margin-top:25px;
+}
+
+.stat {text-align:center}
+
+.stat strong {
+  display:block;
+  color:#567968;
+  font-size:20px;
+}
+
+.stat small {
+  color:#819188;
+  font-size:12px;
+}
+
+.form-box {
+  max-width:650px;
+  margin:auto;
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+}
+
+.form-group {margin-bottom:16px}
+
+.form-group label {
+  display:block;
+  font-size:13px;
+  color:#52675c;
+  margin-bottom:7px;
+}
+
+textarea {min-height:100px;resize:vertical}
+
+.full-btn {
+  background:var(--sage);
+  color:white;
+  width:100%;
+  padding:13px;
+  border-radius:9px;
+}
+
+.notice {
+  padding:15px;
+  background:#edf4ef;
+  border-radius:10px;
+  font-size:13px;
+  color:#668071;
+  margin-top:14px;
+}
+
+.result-item {
+  padding:15px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:10px;
+  margin-bottom:10px;
+}
+
+.result-item p {
+  color:var(--muted);
+  font-size:13px;
+}
+
+.result-item a {
+  color:#648b79;
+  font-size:13px;
+}
+
+#searchResults {margin-top:15px}
+
+.chat-box {
+  max-width:700px;
+  margin:auto;
+  padding:22px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:15px;
+  box-shadow:var(--shadow);
+}
+
+.chat-messages {
+  min-height:150px;
+  max-height:350px;
+  overflow:auto;
+  margin:15px 0;
+}
+
+.message {
+  padding:12px;
+  border-radius:10px;
+  background:#edf4ef;
+  margin-bottom:10px;
+  font-size:14px;
+  overflow-wrap:anywhere;
+}
+
+.message.user {
+  background:#edf3f9;
+  text-align:right;
+}
+
+.chat-controls {
+  display:flex;
+  gap:8px;
+}
+
+.empty {
+  color:var(--muted);
+  font-size:13px;
+}
+
+footer {
+  background:#e9f0eb;
+  text-align:center;
+  padding:35px 15px;
+  color:#708278;
+  font-size:13px;
+}
+
+footer strong {
+  color:#435c50;
+  font-size:21px;
+  letter-spacing:3px;
+}
+
+@media(max-width:800px) {
+  .hero {
+    grid-template-columns:1fr;
+    text-align:center;
+    padding:55px 20px;
+  }
+
+  .hero p {margin:0 auto 22px}
+  .buttons {justify-content:center}
+  .hero-art {min-height:200px}
+  .book {font-size:110px}
+  nav {gap:13px;overflow-x:auto}
+  .stats {grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:550px) {
+  header {
+    padding:13px;
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  nav {
+    width:100%;
+    gap:16px;
+    padding-bottom:5px;
+  }
+
+  .hero h1 {font-size:35px}
+  .container {padding:30px 15px}
+  .search-area {flex-direction:column}
+  .search-area button {padding:13px}
+  .heading h2 {font-size:19px}
+  .grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .card {padding:15px}
+  .card h3 {font-size:14px}
+  .resource-list {grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="#home" class="logo">
+    ORBIT
+    <small>LEARN • EXPLORE • GROW</small>
+  </a>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#study">Study</a>
+    <a href="#websites">Websites</a>
+    <a href="#youtube">YouTube</a>
+    <a href="#upload">Upload</a>
+    <a href="#ai" class="nav-button">AI Chat</a>
+  </nav>
+</header>
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+
+  <div>
+    <span class="tag">✦ A peaceful place to learn</span>
+
+    <h1>
+      All Your Study<br>
+      Resources in One<br>
+      <span>Smart Hub 🌿</span>
+    </h1>
+
+    <p>
+      Discover question papers, important questions,
+      study notes and learning resources.
+      Learn at your own pace with ORBIT.
+    </p>
+
+    <div class="buttons">
+      <a href="#study" class="btn">Explore Resources →</a>
+      <a href="#notice" class="btn btn-outline">View Notices</a>
+    </div>
+  </div>
+
+  <div class="hero-art">
+    <div class="book">📖</div>
+  </div>
+
+</section>
+
+<main class="container">
+
+<!-- SEARCH -->
+
+<section class="section" id="search">
+
+  <div class="heading">
+    <h2>🔍 Find What You Need</h2>
+    <span>Search ORBIT</span>
+  </div>
+
+  <div class="search-area">
+    <input id="searchInput"
+      placeholder="Search questions, papers, subjects..."
+      oninput="searchResources()">
+
+    <button class="full-btn"
+      style="width:auto;padding:12px 22px"
+      onclick="searchResources()">Search</button>
+  </div>
+
+  <div id="searchResults"></div>
+
+</section>
+
+<!-- STUDY CATEGORIES -->
+
+<section class="section" id="study">
+
+  <div class="heading">
+    <h2>📚 Explore Study Resources</h2>
+    <span>Learn freely</span>
+  </div>
+
+  <div class="grid">
+
+    <div class="card mint">
+      <div class="card-icon">📝</div>
+      <h3>Important Questions</h3>
+      <p>Subject-wise important questions and answers.</p>
+      <a href="#allResources"
+        onclick="filterResources('Important Questions')">
+        Explore →
+      </a>
+    </div>
+
+    <div class="card blue">
+      <div class="card-icon">📄</div>
+      <h3>Question Papers</h3>
+      <p>Previous year and model examination papers.</p>
+      <a href="#allResources"
+        onclick="filterResources('Question Paper')">
+        Explore →
+      </a>
+    </div>
+
+    <div class="card lav">
+      <div class="card-icon">📚</div>
+      <h3>Study Notes</h3>
+      <p>Useful notes and subject materials.</p>
+      <a href="#allResources"
+        onclick="filterResources('Study Notes')">
+        Explore →
+      </a>
+    </div>
+
+    <div class="card cream">
+      <div class="card-icon">🎓</div>
+      <h3>College Materials</h3>
+      <p>College subjects and semester resources.</p>
+      <a href="#allResources"
+        onclick="filterResources('College')">
+        Explore →
+      </a>
+    </div>
+
+    <div class="card peach">
+      <div class="card-icon">🧪</div>
+      <h3>Practical Materials</h3>
+      <p>Practical questions and lab resources.</p>
+      <a href="#allResources"
+        onclick="filterResources('Practical')">
+        Explore →
+      </a>
+    </div>
+
+    <div class="card mint">
+      <div class="card-icon">🤖</div>
+      <h3>AI Study Assistant</h3>
+      <p>Get help with your learning questions.</p>
+      <a href="#ai">Explore →</a>
+    </div>
+
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <strong>Free</strong>
+      <small>Learning Resources</small>
+    </div>
+    <div class="stat">
+      <strong>24/7</strong>
+      <small>Website Access</small>
+    </div>
+    <div class="stat">
+      <strong>Share</strong>
+      <small>Study Materials</small>
+    </div>
+    <div class="stat">
+      <strong>Grow</strong>
+      <small>Your Knowledge</small>
+    </div>
+  </div>
+
+</section>
+
+<!-- RESOURCE LIST -->
+
+<section class="section" id="allResources">
+
+  <div class="heading">
+    <h2>📋 Community Resources</h2>
+    <span id="resourceCount">0 resources</span>
+  </div>
+
+  <div class="resource-list" id="resourceList">
+    <p class="empty">No community resources yet.</p>
+  </div>
+
+  <button class="btn btn-outline"
+    style="margin-top:18px"
+    onclick="filterResources('All')">
+    Show All Resources
+  </button>
+
+</section>
+
+<!-- EDUCATION WEBSITES -->
+
+<section class="section" id="websites">
+
+  <div class="heading">
+    <h2>🌐 Educational Websites</h2>
+    <span>Useful learning links</span>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-icon">📘</div>
+      <h3>Padasalai</h3>
+      <p>Tamil Nadu school study materials and exam resources.</p>
+      <a href="https://www.padasalai.net/"
+        target="_blank" rel="noopener">Visit Website ↗</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📗</div>
+      <h3>DIKSHA</h3>
+      <p>Digital learning resources for students.</p>
+      <a href="https://diksha.gov.in/"
+        target="_blank" rel="noopener">Visit Website ↗</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📖</div>
+      <h3>NCERT</h3>
+      <p>Official textbooks and learning resources.</p>
+      <a href="https://ncert.nic.in/"
+        target="_blank" rel="noopener">Visit Website ↗</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🎓</div>
+      <h3>SWAYAM</h3>
+      <p>Online courses and educational resources.</p>
+      <a href="https://swayam.gov.in/"
+        target="_blank" rel="noopener">Visit Website ↗</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📚</div>
+      <h3>ePathshala</h3>
+      <p>Digital textbooks and educational content.</p>
+      <a href="https://epathshala.nic.in/"
+        target="_blank" rel="noopener">Visit Website ↗</a>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- YOUTUBE -->
+
+<section class="section" id="youtube">
+
+  <div class="heading">
+    <h2>▶️ Learning YouTube Channels</h2>
+    <span>Learn from videos</span>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-icon">▶️</div>
+      <h3>Khan Academy</h3>
+      <p>Maths, Science and other subjects.</p>
+      <a href="https://www.youtube.com/@khanacademy"
+        target="_blank" rel="noopener">Open Channel ↗</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">▶️</div>
+      <h3>Physics Wallah</h3>
+      <p>Learning and exam preparation.</p>
+      <a href="https://www.youtube.com/@PhysicsWallah"
+        target="_blank" rel="noopener">Open Channel ↗</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">▶️</div>
+      <h3>Unacademy</h3>
+      <p>Educational lessons and exam preparation.</p>
+      <a href="https://www.youtube.com/@Unacademy"
+        target="_blank" rel="noopener">Open Channel ↗</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">▶️</div>
+      <h3>Computer Science</h3>
+      <p>Find computer science lessons.</p>
+      <a href="https://www.youtube.com/results?search_query=computer+science+tamil"
+        target="_blank" rel="noopener">Watch Videos ↗</a>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- USER UPLOAD -->
+
+<section class="section" id="upload">
+
+  <div class="heading">
+    <h2>📤 Share Your Knowledge</h2>
+    <span>Community Upload</span>
+  </div>
+
+  <div class="form-box">
+
+    <form id="uploadForm">
+
+      <div class="form-group">
+        <label>Your Name</label>
+        <input id="userName"
+          required maxlength="60"
+          placeholder="Enter your name">
+      </div>
+
+      <div class="form-group">
+        <label>Category</label>
+        <select id="category" required>
+          <option value="Important Questions">Important Questions</option>
+          <option value="Question Paper">Question Paper</option>
+          <option value="Study Notes">Study Notes</option>
+          <option value="College">College Materials</option>
+          <option value="Practical">Practical Materials</option>
+          <option value="Educational Link">Educational Link</option>
+          <option value="YouTube Link">YouTube Link</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Subject</label>
+        <input id="subject"
+          required maxlength="100"
+          placeholder="Example: Computer Science">
+      </div>
+
+      <div class="form-group">
+        <label>Title</label>
+        <input id="title"
+          required maxlength="150"
+          placeholder="Enter resource title">
+      </div>
+
+      <div class="form-group">
+        <label>Questions / Educational Description</label>
+        <textarea id="description"
+          required maxlength="5000"
+          placeholder="Enter educational content or questions"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Upload PDF (Optional)</label>
+        <input id="file" type="file" accept=".pdf,application/pdf">
+        <small style="color:#83918a">
+          PDF only. Maximum 5 MB in this demo.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Website / YouTube Link (Optional)</label>
+        <input id="link" type="url"
+          placeholder="https://example.com">
+      </div>
+
+      <button class="full-btn" type="submit">
+        Submit for Approval
+      </button>
+
+    </form>
+
+    <div class="notice">
+      🛡️ All submissions must be checked by an administrator
+      before they are published.
+    </div>
+
+    <p id="uploadMessage"
+      style="margin-top:15px;font-size:13px"
+      aria-live="polite"></p>
+
+  </div>
+
+</section>
+
+<!-- AI CHAT -->
+
+<section class="section" id="ai">
+
+  <div class="heading">
+    <h2>🤖 ORBIT AI Assistant</h2>
+    <span>Your study companion</span>
+  </div>
+
+  <div class="chat-box">
+
+    <span class="badge">AI Study Assistant</span>
+
+    <h3>Ask Anything About Your Studies</h3>
+
+    <p class="empty">
+      Ask questions about Maths, Science, English,
+      Computer Science and more.
+    </p>
+
+    <div class="chat-messages" id="chatMessages">
+      <div class="message">
+        Hello! Welcome to ORBIT. Your AI assistant
+        will be available after API integration.
+      </div>
+    </div>
+
+    <div class="chat-controls">
+      <input id="aiQuestion"
+        placeholder="Type your question..."
+        maxlength="2000">
+      <button class="full-btn"
+        style="width:auto;padding:12px 18px"
+        onclick="askAI()">Send</button>
+    </div>
+
+    <p class="empty" style="margin-top:12px">
+      AI connection is not configured in this frontend demo.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- NOTICES -->
+
+<section class="section" id="notice">
+
+  <div class="heading">
+    <h2>📢 Latest Notices</h2>
+  </div>
+
+  <div class="resource">
+    <h3>Welcome to ORBIT!</h3>
+    <p>
+      Discover learning materials, useful links and
+      educational resources in one peaceful place.
+    </p>
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="section" id="about">
+
+  <div class="heading">
+    <h2>🌿 About ORBIT</h2>
+  </div>
+
+  <div class="resource">
+    <p>
+      ORBIT is a student-focused educational platform.
+      Our goal is to make learning resources easier to
+      discover and share. Students can explore study
+      materials, educational websites, question papers
+      and learning videos in one place.
+    </p>
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="section" id="contact">
+
+  <div class="heading">
+    <h2>📩 Contact</h2>
+  </div>
+
+  <div class="resource">
+    <p>
+      For suggestions, corrections and educational
+      resource requests, contact the ORBIT administrator.
+    </p>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <strong>ORBIT</strong>
+  <p>Learn • Explore • Grow</p>
+  <p style="margin-top:12px">
+    A peaceful place for every student.
+  </p>
+  <p style="margin-top:15px">
+    © 2026 ORBIT. All Rights Reserved.
+  </p>
+</footer>
+
+<script>
+
+// DEMO RESOURCE DATA
+
+let resources = [];
+
+let selectedCategory = "All";
+
+// SEARCH
+
+function searchResources() {
+
+  const query = document
+    .getElementById("searchInput")
+    .value.trim().toLowerCase();
+
+  const results = document.getElementById("searchResults");
+
+  results.replaceChildren();
+
+  if (!query) {
+    results.textContent = "Enter something to search.";
+    return;
+  }
+
+  const matches = resources.filter(item => {
+
+    const text = [
+      item.title,
+      item.subject,
+      item.category,
+      item.description
+    ].join(" ").toLowerCase();
+
+    return text.includes(query);
+
+  });
+
+  if (matches.length === 0) {
+    results.textContent = "No approved community resources found.";
+    return;
+  }
+
+  matches.forEach(item => {
+
+    const div = document.createElement("div");
+    div.className = "result-item";
+
+    const title = document.createElement("h3");
+    title.textContent = item.title;
+
+    const info = document.createElement("p");
+    info.textContent = item.subject + " • " + item.category;
+
+    div.append(title, info);
+
+    if (item.link) {
+      const a = document.createElement("a");
+      a.href = item.link;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = "Open Resource →";
+      div.append(a);
+    }
+
+    results.append(div);
+
+  });
+
+}
+
+// FILTER
+
+function filterResources(category) {
+
+  selectedCategory = category;
+
+  renderResources();
+
+}
+
+function renderResources() {
+
+  const list = document.getElementById("resourceList");
+
+  list.replaceChildren();
+
+  const filtered = selectedCategory === "All"
+    ? resources
+    : resources.filter(item =>
+        item.category === selectedCategory
+      );
+
+  document.getElementById("resourceCount").textContent =
+    filtered.length + " resources";
+
+  if (filtered.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "empty";
+    empty.textContent = "No approved resources available yet.";
+    list.append(empty);
+    return;
+  }
+
+  filtered.forEach(item => {
+
+    const div = document.createElement("div");
+    div.className = "resource";
+
+    const badge = document.createElement("span");
+    badge.className = "badge";
+    badge.textContent = item.category;
+
+    const title = document.createElement("h3");
+    title.textContent = item.title;
+
+    const description = document.createElement("p");
+    description.textContent =
+      item.subject + " • " + item.description;
+
+    const author = document.createElement("p");
+    author.textContent = "Shared by: " + item.name;
+
+    div.append(badge, title, description, author);
+
+    if (item.link) {
+
+      const a = document.createElement("a");
+      a.href = item.link;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = "Open Resource →";
+
+      div.append(a);
+
+    }
+
+    list.append(div);
+
+  });
+
+}
+
+// UPLOAD VALIDATION
+
+document.getElementById("uploadForm")
+.addEventListener("submit", function(event) {
+
+  event.preventDefault();
+
+  const name = document.getElementById("userName").value.trim();
+  const category = document.getElementById("category").value;
+  const subject = document.getElementById("subject").value.trim();
+  const title = document.getElementById("title").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const file = document.getElementById("file").files[0];
+  const link = document.getElementById("link").value.trim();
+
+  const message = document.getElementById("uploadMessage");
+
+  message.style.color = "#b45c50";
+
+  if (!name || !subject || !title || !description) {
+    message.textContent = "Please complete all required fields.";
+    return;
+  }
+
+  if (file) {
+
+    if (file.type !== "application/pdf" ||
+        !file.name.toLowerCase().endsWith(".pdf")) {
+
+      message.textContent = "Only PDF files are allowed.";
+      return;
+
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+
+      message.textContent = "PDF must be smaller than 5 MB.";
+      return;
+
+    }
+
+  }
+
+  if (link) {
+
+    try {
+
+      const url = new URL(link);
+
+      if (!["https:", "http:"].includes(url.protocol)) {
+        throw new Error("Invalid link");
+      }
+
+    } catch {
+
+      message.textContent = "Please enter a valid website link.";
+      return;
+
+    }
+
+  }
+
+  const submission = {
+    id: Date.now(),
+    name,
+    category,
+    subject,
+    title,
+    description,
+    link,
+    fileName: file ? file.name : "",
+    status: "Pending"
+  };
+
+  // This is a local demonstration only.
+  // Real public submissions require a secure backend,
+  // database, file storage and server-side approval.
+
+  let pending = [];
+
+  try {
+    pending = JSON.parse(
+      sessionStorage.getItem("orbitPending") || "[]"
+    );
+
+    if (!Array.isArray(pending)) pending = [];
+
+  } catch {
+    pending = [];
+  }
+
+  pending.push(submission);
+
+  try {
+
+    sessionStorage.setItem(
+      "orbitPending",
+      JSON.stringify(pending)
+    );
+
+  } catch {
+
+    message.textContent =
+      "Unable to save this demo submission in your browser.";
+    return;
+
+  }
+
+  message.style.color = "#66877b";
+
+  message.textContent =
+    "Submission saved as pending in this browser demo. It is not yet published.";
+
+  this.reset();
+
+});
+
+// AI CHAT PLACEHOLDER
+
+function askAI() {
+
+  const input = document.getElementById("aiQuestion");
+
+  const messages = document.getElementById("chatMessages");
+
+  const question = input.value.trim();
+
+  if (!question) return;
+
+  const userMessage = document.createElement("div");
+  userMessage.className = "message user";
+  userMessage.textContent = question;
+
+  const botMessage = document.createElement("div");
+  botMessage.className = "message";
+  botMessage.textContent =
+    "ORBIT AI is not connected yet. A secure AI backend and API connection are required for real answers.";
+
+  messages.append(userMessage, botMessage);
+
+  messages.scrollTop = messages.scrollHeight;
+
+  input.value = "";
+
+}
+
+document.getElementById("aiQuestion")
+.addEventListener("keydown", function(event) {
+
+  if (event.key === "Enter") {
+    askAI();
+  }
+
+});
+
+// INITIALIZE
+
+renderResources();
+
+</script>
+
+</body>
+</html>
