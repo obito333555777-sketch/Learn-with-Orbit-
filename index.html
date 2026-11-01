@@ -1,13 +1,38 @@
-HTML
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="google-site-verification" content="2VvLFIVvN80TMGjKCRFzGrbWYQ5fHsvLPuCeRYECNzc" />
+<meta name="google-site-verification" content="2VvLFIVvN80TMGjKCRFzGrbWYQ5fHsvLPuCeRYECNzc">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#050b1c">
-<title>ORBIT - Smart Learning Hub</title>
+
+<!-- SEO TITLE -->
+<title>Learn with Orbit | Smart Learning Hub</title>
+
+<!-- GOOGLE SEO -->
+<meta name="description" content="Learn with Orbit is a free smart learning hub for students. Explore study materials, mock exams, question papers, educational websites and learning resources.">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://obito333555777-sketch.github.io/Learn-with-Orbit-/">
+
+<!-- OPEN GRAPH -->
+<meta property="og:title" content="Learn with Orbit">
+<meta property="og:description" content="Learn, explore and grow with Orbit. Discover free educational resources and study materials.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://obito333555777-sketch.github.io/Learn-with-Orbit-/">
+
+<!-- GOOGLE STRUCTURED DATA -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Learn with Orbit",
+  "alternateName": "ORBIT Smart Learning Hub",
+  "url": "https://obito333555777-sketch.github.io/Learn-with-Orbit-/"
+}
+</script>
+
 <style>
 :root{--bg:#050b1c;--panel:#0c1930;--line:#1b3152;--text:#f4f7ff;--muted:#a5b6d0;--blue:#168cff}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -116,6 +141,7 @@ nav{width:100%;padding-bottom:5px}
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -129,13 +155,21 @@ nav{width:100%;padding-bottom:5px}
 <section class="orbit-home" id="home">
 <div class="home-content">
 <span class="home-tag">✦ 100% FREE FOR STUDENTS</span>
-<h1>All Your Study<br>Resources in <span>One</span><br><span class="blue-text">Smart Hub 🚀</span></h1>
+
+<h1>
+Learn with Orbit 🚀<br>
+All Your Study<br>Resources in <span>One</span><br>
+<span class="blue-text">Smart Hub</span>
+</h1>
+
 <p>Access mock exams, reference sheets, expected papers, and more free resources to help you study smarter and achieve better results.</p>
+
 <div class="home-buttons">
 <a href="#smart" class="home-primary">Explore Resources ▣</a>
 <a href="#study" class="home-secondary">♧ View Study Materials</a>
 </div>
 </div>
+
 <div class="home-visual">
 <div class="glow-circle"></div>
 <div class="floating-icon icon-one">📄</div>
@@ -145,6 +179,7 @@ nav{width:100%;padding-bottom:5px}
 <div class="book">📖</div>
 <div class="book-caption">LEARN • EXPLORE • GROW</div>
 </div>
+
 <div class="home-features">
 <div class="home-feature"><div class="feature-icon">📋</div><h3>Mock Exams</h3><p>Practice with semester and final mock exams.</p></div>
 <div class="home-feature"><div class="feature-icon">📗</div><h3>Reference Sheets</h3><p>Download quick revision and study guides.</p></div>
@@ -152,6 +187,7 @@ nav{width:100%;padding-bottom:5px}
 <div class="home-feature"><div class="feature-icon">☏</div><h3>WhatsApp Updates</h3><p>Stay updated about new resources.</p></div>
 <div class="home-feature"><div class="feature-icon">🎁</div><h3>100% Free</h3><p>All resources are completely free.</p></div>
 </div>
+
 <div class="home-stats">
 <div class="home-stat"><span>⭐</span><div><strong>100%</strong><small>Free for Students</small></div></div>
 <div class="home-stat"><span>◷</span><div><strong>24/7</strong><small>Always Accessible</small></div></div>
@@ -295,6 +331,7 @@ nav{width:100%;padding-bottom:5px}
 <div class="heading"><h2>🌿 About ORBIT</h2></div>
 <div class="panel">ORBIT is a learning platform designed to help students discover educational websites, videos, study materials and learning resources in one place.</div>
 </section>
+
 </main>
 
 <footer>
@@ -355,6 +392,7 @@ function loadData(key,fallback){
 try{const d=JSON.parse(localStorage.getItem(key));return Array.isArray(d)?d:fallback}
 catch(e){return fallback}
 }
+
 let websites=loadData("orbitWebsites",defaultWebsites);
 let channels=loadData("orbitChannels",defaultChannels);
 let favorites=loadData("orbitFavorites",[]);
@@ -365,10 +403,12 @@ function save(key,data){
 try{localStorage.setItem(key,JSON.stringify(data))}
 catch(e){alert("Browser storage is full.")}
 }
+
 function safeUrl(url){
 try{const u=new URL(url);return ["https:","http:"].includes(u.protocol)?u.href:null}
 catch(e){return null}
 }
+
 function openLink(url){
 const valid=safeUrl(url);
 if(valid)window.open(valid,"_blank","noopener,noreferrer");
@@ -412,6 +452,7 @@ save("orbitWebsites",websites);
 ["newWebName","newWebUrl","newWebDesc"].forEach(id=>document.getElementById(id).value="");
 renderWebsites();
 }
+
 function removeWebsite(name){
 if(!confirm("Remove "+name+"?"))return;
 websites=websites.filter(w=>!(w.name===name&&w.custom));
@@ -421,6 +462,7 @@ save("orbitWebsites",websites);renderWebsites();
 function channelUrl(c){
 return c.url&&safeUrl(c.url)?c.url:"https://www.youtube.com/results?search_query="+encodeURIComponent(c.query||c.name);
 }
+
 function renderChannels(){
 const q=document.getElementById("channelFilter").value.toLowerCase();
 const list=document.getElementById("channelList");list.replaceChildren();
@@ -443,6 +485,7 @@ card.append(icon,title,desc,actions);list.append(card);
 });
 document.getElementById("totalChannels").textContent=channels.length;
 }
+
 function addChannel(){
 const name=document.getElementById("newChannelName").value.trim();
 const url=document.getElementById("newChannelUrl").value.trim();
@@ -455,6 +498,7 @@ save("orbitChannels",channels);
 ["newChannelName","newChannelUrl","newChannelDesc"].forEach(id=>document.getElementById(id).value="");
 renderChannels();
 }
+
 function removeChannel(name){
 if(!confirm("Remove "+name+"?"))return;
 channels=channels.filter(c=>!(c.name===name&&c.custom));
@@ -466,10 +510,12 @@ mode=value;
 document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
 button.classList.add("active");
 }
+
 function addHistory(q){
 history=history.filter(x=>x!==q);history.unshift(q);history=history.slice(0,10);
 save("orbitHistory",history);renderHistory();
 }
+
 function smartSearch(){
 const query=document.getElementById("query").value.trim();
 const cls=document.getElementById("className").value;
@@ -489,6 +535,7 @@ const p=document.createElement("p");p.textContent=description;
 const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Open Search Results →";
 div.append(h,p,a);results.append(div);
 }
+
 if(mode==="all"||mode==="web"){
 addResult("Google - All Educational Websites","Search the topic across the web.","https://www.google.com/search?q="+encoded+" education study");
 websites.forEach(w=>{
@@ -498,6 +545,7 @@ if(domain.includes("youtube.com"))return;
 addResult(w.name+" - Search Inside Website","Search "+full+" inside "+w.name,"https://www.google.com/search?q="+encodeURIComponent("site:"+domain+" "+full));
 });
 }
+
 if(mode==="all"||mode==="youtube"){
 addResult("YouTube - All Videos","Find videos about "+full,"https://www.youtube.com/results?search_query="+encoded);
 channels.forEach(c=>{
@@ -505,15 +553,18 @@ addResult(c.name+" - Lesson Search","Find "+full+" lessons from "+c.name,"https:
 });
 }
 }
+
 function quickSearch(q){
 document.getElementById("query").value=q;
 document.getElementById("smart").scrollIntoView();
 smartSearch();
 }
+
 function openGoogleWeb(){
 const q=document.getElementById("webFilter").value.trim();
 openLink("https://www.google.com/search?q="+encodeURIComponent(q||"Tamil Nadu educational websites"));
 }
+
 function openYouTube(){
 const q=document.getElementById("channelFilter").value.trim();
 openLink("https://www.youtube.com/results?search_query="+encodeURIComponent(q||"Tamil educational channels"));
@@ -525,6 +576,7 @@ if(exists)favorites=favorites.filter(f=>!(f.type===type&&f.name===name));
 else favorites.push({type,name,url});
 save("orbitFavorites",favorites);renderFavorites();
 }
+
 function renderFavorites(){
 const list=document.getElementById("favoriteList");list.replaceChildren();
 if(!favorites.length){
@@ -539,6 +591,7 @@ const remove=document.createElement("button");remove.className="fav";remove.text
 card.append(title,p,open,remove);list.append(card);
 });
 }
+
 function renderHistory(){
 const list=document.getElementById("historyList");list.replaceChildren();
 if(!history.length){
@@ -549,6 +602,7 @@ const button=document.createElement("button");button.className="secondary";butto
 button.textContent="🔍 "+q;button.onclick=()=>quickSearch(q);list.append(button);
 });
 }
+
 function clearHistory(){history=[];save("orbitHistory",history);renderHistory()}
 
 document.getElementById("uploadForm").addEventListener("submit",function(e){
@@ -577,6 +631,7 @@ const bot=document.createElement("div");bot.className="message";
 bot.textContent="ORBIT AI is not connected yet. A secure backend and AI API are required for real answers.";
 messages.append(user,bot);messages.scrollTop=messages.scrollHeight;input.value="";
 }
+
 document.getElementById("aiInput").addEventListener("keydown",e=>{if(e.key==="Enter")askAI()});
 document.getElementById("query").addEventListener("keydown",e=>{if(e.key==="Enter")smartSearch()});
 
@@ -585,5 +640,6 @@ renderChannels();
 renderFavorites();
 renderHistory();
 </script>
+
 </body>
 </html>
