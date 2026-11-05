@@ -1,845 +1,565 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#07142f">
-
-<title>Learn with Orbit | Smart Learning Hub</title>
-<meta name="description" content="Learn with Orbit is a free smart learning platform for students. Search study materials, educational websites, YouTube lessons, notes and study plans.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://learn-with-orbit.vercel.app/">
-
-<style>
-:root {
-  --bg:#071329;
-  --panel:#0d1d3b;
-  --panel2:#102448;
-  --border:#233d68;
-  --blue:#168cff;
-  --cyan:#42d9ff;
-  --text:#f3f7ff;
-  --muted:#9eafd0;
-  --green:#13c99a;
-  --purple:#8b5cf6;
-  --gold:#f5b94c;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:Inter,Arial,sans-serif;
-  min-height:100vh;
-}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-a{color:inherit;text-decoration:none}
-.layout{display:flex;min-height:100vh}
-
-/* SIDEBAR */
-.sidebar{
-  width:235px;position:fixed;top:0;bottom:0;left:0;
-  background:#08152e;border-right:1px solid var(--border);
-  padding:23px 14px;z-index:50;overflow-y:auto;
-}
-.logo{text-align:center;margin-bottom:28px}
-.logo-symbol{font-size:39px;color:#36baff}
-.logo h2{font-size:23px;line-height:1.15}
-.logo h2 span{color:#54baff}
-.logo p{font-size:10px;letter-spacing:2px;color:var(--muted);margin-top:8px}
-.nav-label{font-size:10px;color:#7891b9;margin:22px 10px 9px;letter-spacing:1.5px}
-.nav-link{
- display:flex;align-items:center;gap:13px;
- padding:12px 13px;margin:4px 0;border-radius:11px;
- color:#c4d2ed;font-size:14px;transition:.2s;
-}
-.nav-link:hover,.nav-link.active{
- background:linear-gradient(100deg,#087be8,#1452ad);
- color:white;box-shadow:0 5px 18px #087be844;
-}
-.nav-link .ico{width:22px;text-align:center;font-size:18px}
-.sidebar-bottom{
- margin-top:30px;padding:16px;border:1px solid #31558a;
- border-radius:15px;background:#102448;
-}
-.sidebar-bottom p{font-size:12px;color:var(--muted);margin-top:7px}
-
-/* MAIN */
-.main{margin-left:235px;width:calc(100% - 235px);padding:20px 30px 50px}
-.topbar{display:flex;align-items:center;gap:15px;margin-bottom:24px}
-.top-search{flex:1;position:relative}
-.top-search input{
- width:100%;padding:15px 18px 15px 45px;border-radius:30px;
- border:1px solid #36517c;background:#102344;color:white;outline:none;
-}
-.top-search span{position:absolute;left:17px;top:12px;font-size:19px}
-.top-actions{display:flex;align-items:center;gap:15px}
-.icon-btn{
- border:1px solid var(--border);background:var(--panel);
- color:white;border-radius:50%;width:43px;height:43px;font-size:18px;
-}
-.avatar{background:var(--blue);border-radius:50%;width:42px;height:42px;
- display:grid;place-items:center;font-weight:bold}
-.menu-toggle{display:none}
-
-/* SECTIONS */
-section.page{display:none;animation:appear .25s ease}
-section.page.active{display:block}
-@keyframes appear{from{opacity:.3;transform:translateY(6px)}to{opacity:1;transform:none}}
-.hero{
- border:1px solid #234b7e;border-radius:20px;padding:27px;
- background:linear-gradient(105deg,#102a52,#0b1d3b 60%,#112c58);
- position:relative;overflow:hidden;margin-bottom:22px;
-}
-.hero:after{
- content:"✦";position:absolute;right:8%;top:5%;
- font-size:110px;color:#56aaff18;
-}
-.hero small{color:#5dcaff;font-weight:bold;letter-spacing:1px}
-.hero h1{font-size:clamp(25px,3vw,38px);margin:12px 0 8px}
-.hero h1 span{color:#52c7ff}
-.hero p{color:#bdcce5;line-height:1.7;max-width:620px}
-.btn{
- border:0;border-radius:10px;padding:12px 19px;
- background:var(--blue);color:white;font-weight:700;
- transition:.2s;
-}
-.btn:hover{filter:brightness(1.15);transform:translateY(-1px)}
-.btn.secondary{background:#1b3155;border:1px solid #3a5682}
-.btn.green{background:#079c78}
-.hero-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:19px}
-
-/* QUICK CARDS */
-.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:23px}
-.quick-card{
- padding:18px;border-radius:15px;border:1px solid var(--border);
- background:var(--panel);display:flex;align-items:center;gap:13px;
- cursor:pointer;transition:.2s;min-width:0;
-}
-.quick-card:hover{border-color:var(--blue);transform:translateY(-3px)}
-.quick-icon{width:46px;height:46px;border-radius:13px;
- display:grid;place-items:center;font-size:22px;background:#14509a}
-.quick-card:nth-child(2) .quick-icon{background:#552bb0}
-.quick-card:nth-child(3) .quick-icon{background:#087e69}
-.quick-card:nth-child(4) .quick-icon{background:#805018}
-.quick-card h3{font-size:14px}
-.quick-card p{font-size:11px;color:var(--muted);margin-top:5px}
-
-/* PANELS */
-.panel{
- background:var(--panel);border:1px solid var(--border);
- border-radius:16px;padding:19px;margin-bottom:19px;min-width:0;
-}
-.panel-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}
-.panel-heading h2{font-size:18px}
-.panel-heading small{color:var(--muted)}
-.dashboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
-.stat{background:#102448;padding:15px;border-radius:13px;border:1px solid var(--border)}
-.stat .number{font-size:25px;font-weight:800;color:#5bbaff}
-.stat p{font-size:12px;color:var(--muted);margin-top:5px}
-.progress-track{height:9px;background:#20385d;border-radius:20px;overflow:hidden;margin-top:12px}
-.progress-fill{height:100%;background:linear-gradient(90deg,#087dff,#42d9ff);border-radius:20px;width:0;transition:.3s}
-
-/* SEARCH */
-.search-box{
- background:linear-gradient(130deg,#102b55,#10203e);
- border:1px solid #31588c;border-radius:17px;padding:22px;margin-bottom:20px;
-}
-.search-box h2{font-size:21px;margin-bottom:7px}
-.search-box>p{color:var(--muted);font-size:13px;margin-bottom:18px}
-.fields{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.field label{display:block;font-size:12px;color:#adc3e7;margin-bottom:7px}
-.field input,.field select,.field textarea,
-.search-box input,.search-box select{
- width:100%;padding:12px;border-radius:9px;
- border:1px solid #34527e;background:#091a35;color:white;outline:none;
-}
-.search-query{display:flex;gap:10px;margin-top:13px}
-.search-query input{flex:1;min-width:0}
-.search-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
-.tab{
- border:1px solid #35527d;background:#102344;color:#c9d8f1;
- padding:9px 17px;border-radius:20px;font-size:12px;
-}
-.tab.active{background:#087fe8;color:white;border-color:#087fe8}
-.result-area{color:var(--muted);font-size:13px;line-height:1.8}
-
-/* LISTS AND FORMS */
-.item-list{display:grid;gap:10px}
-.item{
- display:flex;align-items:center;justify-content:space-between;gap:12px;
- background:#102448;padding:13px;border-radius:11px;border:1px solid #203d66;
-}
-.item-info{min-width:0}
-.item-info strong{font-size:13px;display:block}
-.item-info small{font-size:11px;color:var(--muted)}
-.item-actions{display:flex;gap:7px;flex-shrink:0}
-.small-btn{
- border:1px solid #365681;background:#142e52;color:white;
- padding:7px 10px;border-radius:8px;font-size:11px;
-}
-.small-btn.done{background:#08795f}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.form-grid .full{grid-column:1/-1}
-.form-grid label{font-size:12px;color:#b6c8e5;display:block;margin-bottom:6px}
-.form-grid input,.form-grid select,.form-grid textarea{
- width:100%;padding:12px;border-radius:9px;background:#091a35;
- border:1px solid #34527e;color:white;outline:none;
-}
-.form-grid textarea{min-height:85px;resize:vertical}
-.empty{padding:25px;text-align:center;color:var(--muted);font-size:13px}
-.note-card{background:#102448;border:1px solid var(--border);padding:15px;border-radius:12px}
-.note-card h3{font-size:14px;margin-bottom:7px}
-.note-card p{font-size:12px;color:var(--muted);white-space:pre-wrap}
-.notes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-
-/* CALENDAR */
-.calendar-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}
-.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
-.calendar-grid div{text-align:center;padding:10px 2px;font-size:12px;border-radius:7px}
-.calendar-grid .day-name{color:#8ca5ca;font-weight:bold}
-.calendar-grid .today{background:#087fe8;color:white}
-.calendar-grid .has-task{border-bottom:3px solid #12c99a}
-.calendar-grid .muted-day{color:#536987}
-
-/* FOOTER / MOBILE */
-.footer{text-align:center;color:#7189ae;font-size:12px;padding:25px}
-.mobile-nav{display:none}
-
-@media(max-width:1050px){
- .quick-grid{grid-template-columns:repeat(2,1fr)}
- .dashboard-grid{grid-template-columns:1fr}
- .notes-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:700px){
- .sidebar{transform:translateX(-100%);transition:.25s;width:255px}
- .sidebar.open{transform:translateX(0)}
- .main{margin-left:0;width:100%;padding:14px 13px 90px}
- .menu-toggle{display:block}
- .topbar{gap:9px;margin-bottom:17px}
- .top-search input{padding:12px 12px 12px 37px;font-size:12px}
- .top-search span{left:12px;top:9px}
- .top-actions{gap:7px}
- .icon-btn{width:37px;height:37px}
- .avatar{width:37px;height:37px}
- .hero{padding:21px 17px}
- .hero h1{font-size:27px}
- .quick-grid{gap:9px}
- .quick-card{padding:12px;gap:9px}
- .quick-icon{width:37px;height:37px;font-size:18px}
- .quick-card h3{font-size:12px}
- .quick-card p{font-size:10px}
- .fields{grid-template-columns:1fr}
- .search-query{flex-wrap:wrap}
- .search-query input{flex-basis:100%}
- .stat-grid{grid-template-columns:repeat(3,1fr);gap:7px}
- .stat{padding:10px}
- .stat .number{font-size:19px}
- .stat p{font-size:10px}
- .panel{padding:14px}
- .notes-grid{grid-template-columns:1fr}
- .form-grid{grid-template-columns:1fr}
- .form-grid .full{grid-column:auto}
- .mobile-nav{
-  display:flex;position:fixed;bottom:0;left:0;right:0;
-  background:#08152e;border-top:1px solid var(--border);
-  justify-content:space-around;padding:9px 3px;z-index:40;
- }
- .mobile-nav button{
-  background:none;border:0;color:#a8bbda;font-size:10px;
-  display:grid;gap:4px;justify-items:center;
- }
- .mobile-nav button span{font-size:19px}
- .mobile-nav button.active{color:#42baff}
- .calendar-grid div{font-size:10px;padding:8px 1px}
-}
-</style>
-</head>
-
-<body>
-<div class="layout">
-
-<!-- SIDEBAR -->
-<aside class="sidebar" id="sidebar">
- <div class="logo">
-  <div class="logo-symbol">✦ 🚀</div>
-  <h2>Learn with <span>Orbit</span></h2>
-  <p>LEARN • EXPLORE • GROW</p>
- </div>
-
- <div class="nav-label">MAIN MENU</div>
- <a class="nav-link active" data-page="home"><span class="ico">⌂</span>Home</a>
- <a class="nav-link" data-page="study"><span class="ico">▦</span>Study Chart</a>
- <a class="nav-link" data-page="notes"><span class="ico">📝</span>My Notes</a>
- <a class="nav-link" data-page="tasks"><span class="ico">☑</span>My Tasks</a>
- <a class="nav-link" data-page="search"><span class="ico">⌕</span>Smart Search</a>
- <a class="nav-link" data-page="websites"><span class="ico">🌐</span>Websites</a>
- <a class="nav-link" data-page="youtube"><span class="ico">▶</span>YouTube</a>
- <a class="nav-link" data-page="favourites"><span class="ico">♡</span>Favourites</a>
- <a class="nav-link" data-page="upload"><span class="ico">⇧</span>Share Materials</a>
- <a class="nav-link" data-page="ai"><span class="ico">🤖</span>AI Tutor</a>
-
- <div class="sidebar-bottom">
-  <strong>🚀 Keep Learning!</strong>
-  <p>One Search. Unlimited Knowledge.</p>
- </div>
-</aside>
-
-<!-- MAIN CONTENT -->
-<main class="main">
-
-<header class="topbar">
- <button class="icon-btn menu-toggle" onclick="toggleMenu()">☰</button>
- <div class="top-search">
-  <span>⌕</span>
-  <input id="globalSearch" placeholder="Search anything... Websites, YouTube, Topics"
-  onkeydown="if(event.key==='Enter'){goSearch(this.value)}">
- </div>
- <div class="top-actions">
-  <button class="icon-btn" onclick="showPage('tasks')" title="Tasks">🔔</button>
-  <div class="avatar">O</div>
- </div>
-</header>
-
-<!-- HOME -->
-<section class="page active" id="home">
- <div class="hero">
-  <small>✦ 100% FREE FOR STUDENTS</small>
-  <h1>Hello, <span id="welcomeName">Student</span>! 👋</h1>
-  <h2 style="color:#70d6ff;font-size:18px;margin-bottom:9px">Keep Learning, Keep Growing...</h2>
-  <p>All your study resources, notes, learning videos and study plans in one smart hub. Learn smarter and achieve more with Orbit.</p>
-  <div class="hero-buttons">
-   <button class="btn" onclick="showPage('search')">Explore Resources ↗</button>
-   <button class="btn secondary" onclick="showPage('study')">My Study Plan</button>
-  </div>
- </div>
-
- <div class="quick-grid">
-  <div class="quick-card" onclick="showPage('study')">
-   <div class="quick-icon">▦</div><div><h3>Study Chart</h3><p>Plan your study</p></div>
-  </div>
-  <div class="quick-card" onclick="showPage('notes')">
-   <div class="quick-icon">📝</div><div><h3>My Notes</h3><p>Take notes easily</p></div>
-  </div>
-  <div class="quick-card" onclick="showPage('tasks')">
-   <div class="quick-icon">☑</div><div><h3>My Tasks</h3><p>Track your goals</p></div>
-  </div>
-  <div class="quick-card" onclick="showPage('report')">
-   <div class="quick-icon">🏆</div><div><h3>Daily Report</h3><p>Check progress</p></div>
-  </div>
- </div>
-
- <div class="dashboard-grid">
-  <div class="panel">
-   <div class="panel-heading">
-    <h2>📅 My Study Planner</h2>
-    <button class="small-btn" onclick="showPage('study')">View Plan →</button>
-   </div>
-   <div style="display:flex;align-items:center;gap:18px">
-    <div style="width:100px;height:100px;border-radius:50%;border:9px solid #1b8cff;display:grid;place-items:center;font-size:24px;font-weight:bold" id="homeProgress">0%</div>
-    <div style="flex:1">
-     <strong id="taskCount">0 / 0 Tasks Completed</strong>
-     <div class="progress-track"><div class="progress-fill" id="homeBar"></div></div>
-     <p style="color:var(--muted);font-size:12px;margin-top:12px">🎯 Complete your daily study goals!</p>
-    </div>
-   </div>
-  </div>
-
-  <div class="panel">
-   <div class="panel-heading">
-    <h2>☑ Today's Tasks</h2>
-    <button class="small-btn" onclick="showPage('tasks')">+ Add Task</button>
-   </div>
-   <div class="item-list" id="homeTasks"></div>
-  </div>
- </div>
-
- <div class="dashboard-grid">
-  <div class="panel">
-   <div class="panel-heading"><h2>📆 Study Calendar</h2><button class="small-btn" onclick="showPage('study')">Full Calendar</button></div>
-   <div id="homeCalendar"></div>
-  </div>
-  <div class="panel">
-   <div class="panel-heading"><h2>📝 Recent Notes</h2><button class="small-btn" onclick="showPage('notes')">View All</button></div>
-   <div class="item-list" id="homeNotes"></div>
-  </div>
- </div>
-
- <div class="panel">
-  <div class="panel-heading"><h2>🔍 Quick Study Search</h2></div>
-  <div class="fields">
-   <div class="field"><label>Class / Standard</label>
-    <select id="homeClass"><option value="">Select Class</option><option>6th Standard</option><option>7th Standard</option><option>8th Standard</option><option>9th Standard</option><option>10th Standard</option><option>11th Standard</option><option>12th Standard</option><option>College</option></select>
-   </div>
-   <div class="field"><label>Subject</label>
-    <select id="homeSubject"><option value="">Select Subject</option><option>Maths</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>Computer Science</option><option>English</option><option>Tamil</option><option>DBMS</option><option>Commerce</option></select>
-   </div>
-   <div class="field"><label>Topic</label><input id="homeTopic" placeholder="Enter topic"></div>
-  </div>
-  <button class="btn" style="margin-top:13px" onclick="homeSearch()">Search Learning Materials →</button>
- </div>
-</section>
-
-<!-- SEARCH -->
-<section class="page" id="search">
- <div class="panel">
-  <h1 style="font-size:25px;margin-bottom:8px">🔍 ORBIT Smart Study Search</h1>
-  <p style="color:var(--muted);font-size:13px;margin-bottom:20px">Find educational websites, YouTube lessons and study topics easily.</p>
-  <div class="fields">
-   <div class="field"><label>Class / Standard</label>
-    <select id="searchClass"><option value="">All Classes</option><option>6th Standard</option><option>7th Standard</option><option>8th Standard</option><option>9th Standard</option><option>10th Standard</option><option>11th Standard</option><option>12th Standard</option><option>College</option></select>
-   </div>
-   <div class="field"><label>Subject</label>
-    <select id="searchSubject"><option value="">All Subjects</option><option>Maths</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>Computer Science</option><option>Tamil</option><option>English</option><option>Social Science</option><option>Commerce</option><option>DBMS</option></select>
-   </div>
-   <div class="field"><label>Search Engine</label>
-    <select id="engine"><option value="google">Google</option><option value="bing">Bing</option><option value="duck">DuckDuckGo</option></select>
-   </div>
-  </div>
-  <div class="search-query">
-   <input id="topic" placeholder="Example: 12th Maths Integration, DBMS Normalization">
-   <button class="btn" onclick="performSearch()">Search ↗</button>
-  </div>
-  <div class="search-tabs">
-   <button class="tab active" data-filter="all" onclick="setFilter('all',this)">All</button>
-   <button class="tab" data-filter="web" onclick="setFilter('web',this)">🌐 Websites</button>
-   <button class="tab" data-filter="youtube" onclick="setFilter('youtube',this)">▶ YouTube</button>
-  </div>
-  <div class="result-area" id="searchMessage">Select your class, subject and topic to begin learning.</div>
- </div>
-</section>
-
-<!-- STUDY CHART -->
-<section class="page" id="study">
- <div class="panel">
-  <div class="panel-heading"><div><h1>📅 My Study Chart</h1><small>Plan your day and achieve your goals.</small></div><button class="btn" onclick="showPage('tasks')">+ Add Task</button></div>
-  <div class="stat-grid">
-   <div class="stat"><div class="number" id="studyTotal">0</div><p>Total Tasks</p></div>
-   <div class="stat"><div class="number" id="studyDone">0</div><p>Completed</p></div>
-   <div class="stat"><div class="number" id="studyPercent">0%</div><p>Progress</p></div>
-  </div>
-  <div class="panel-heading"><h2>📆 Monthly Calendar</h2><div><button class="small-btn" onclick="changeMonth(-1)">←</button> <button class="small-btn" onclick="changeMonth(1)">→</button></div></div>
-  <div id="fullCalendar"></div>
- </div>
- <div class="panel">
-  <div class="panel-heading"><h2>📋 My Study Schedule</h2></div>
-  <div id="studyTaskList" class="item-list"></div>
- </div>
-</section>
-
-<!-- TASKS -->
-<section class="page" id="tasks">
- <div class="panel">
-  <h1>☑ My Tasks</h1>
-  <p style="color:var(--muted);font-size:13px;margin:8px 0 20px">Create your study goals and track your progress.</p>
-  <form onsubmit="addTask(event)">
-   <div class="form-grid">
-    <div class="full"><label>Task Name</label><input id="taskTitle" required placeholder="Example: Complete Maths Exercise 5.1"></div>
-    <div><label>Subject</label><select id="taskSubject"><option>Maths</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>Computer Science</option><option>English</option><option>Tamil</option><option>DBMS</option><option>Other</option></select></div>
-    <div><label>Study Date</label><input type="date" id="taskDate" required></div>
-    <div><label>Duration (minutes)</label><input type="number" id="taskDuration" min="1" value="30"></div>
-    <div><label>Priority</label><select id="taskPriority"><option>Normal</option><option>Important</option><option>High</option></select></div>
-   </div>
-   <button class="btn" style="margin-top:15px">+ Create Task</button>
-  </form>
- </div>
- <div class="panel">
-  <div class="panel-heading"><h2>My Study Goals</h2><button class="small-btn" onclick="clearCompleted()">Clear Completed</button></div>
-  <div class="item-list" id="taskList"></div>
- </div>
-</section>
-
-<!-- NOTES -->
-<section class="page" id="notes">
- <div class="panel">
-  <h1>📝 My Notes</h1>
-  <p style="color:var(--muted);font-size:13px;margin:8px 0 20px">Write, save and organize your study notes.</p>
-  <form onsubmit="saveNote(event)">
-   <div class="form-grid">
-    <div><label>Note Title</label><input id="noteTitle" required placeholder="Enter title"></div>
-    <div><label>Subject</label><select id="noteSubject"><option>Maths</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>Computer Science</option><option>English</option><option>DBMS</option><option>Other</option></select></div>
-    <div class="full"><label>Write Your Notes</label><textarea id="noteContent" required placeholder="Write your important points here..."></textarea></div>
-   </div>
-   <button class="btn" style="margin-top:13px">Save Note</button>
-  </form>
- </div>
- <div class="panel">
-  <div class="panel-heading"><h2>📚 Saved Notes</h2></div>
-  <div class="notes-grid" id="notesList"></div>
- </div>
-</section>
-
-<!-- WEBSITES -->
-<section class="page" id="websites">
- <div class="panel">
-  <h1>🌐 Educational Websites</h1>
-  <p style="color:var(--muted);font-size:13px;margin:8px 0 17px">Find and save useful learning websites.</p>
-  <form onsubmit="addResource(event,'web')">
-   <div class="form-grid">
-    <div><label>Website Name</label><input id="webName" required placeholder="Website name"></div>
-    <div><label>Website URL</label><input id="webUrl" type="url" required placeholder="https://example.com"></div>
-   </div>
-   <button class="btn" style="margin-top:13px">+ Add Website</button>
-  </form>
- </div>
- <div class="panel"><h2 style="margin-bottom:15px">My Websites</h2><div id="webList" class="item-list"></div></div>
-</section>
-
-<!-- YOUTUBE -->
-<section class="page" id="youtube">
- <div class="panel">
-  <h1>▶ YouTube Learning Channels</h1>
-  <p style="color:var(--muted);font-size:13px;margin:8px 0 17px">Save educational channels and lessons.</p>
-  <form onsubmit="addResource(event,'yt')">
-   <div class="form-grid">
-    <div><label>Channel / Video Name</label><input id="ytName" required placeholder="Name"></div>
-    <div><label>YouTube URL</label><input id="ytUrl" type="url" required placeholder="https://youtube.com/..."></div>
-   </div>
-   <button class="btn" style="margin-top:13px">+ Add Channel</button>
-  </form>
- </div>
- <div class="panel"><h2 style="margin-bottom:15px">My YouTube Resources</h2><div id="ytList" class="item-list"></div></div>
-</section>
-
-<!-- FAVOURITES -->
-<section class="page" id="favourites">
- <div class="panel">
-  <h1>♡ My Favourites</h1>
-  <p style="color:var(--muted);margin:8px 0 15px;font-size:13px">Your saved websites and videos.</p>
-  <div id="favList" class="item-list"></div>
- </div>
-</section>
-
-<!-- UPLOAD -->
-<section class="page" id="upload">
- <div class="panel">
-  <h1>📤 Share Study Materials</h1>
-  <p style="color:var(--muted);font-size:13px;margin:8px 0 18px">Share your learning resources with other students.</p>
-  <form onsubmit="submitMaterial(event)">
-   <div class="form-grid">
-    <div><label>Your Name</label><input id="shareName" required></div>
-    <div><label>Category</label><select id="shareCategory"><option>Important Questions</option><option>Question Papers</option><option>Study Notes</option><option>College Materials</option><option>Practical Materials</option></select></div>
-    <div class="full"><label>Title</label><input id="shareTitle" required></div>
-    <div class="full"><label>Description</label><textarea id="shareDescription"></textarea></div>
-    <div class="full"><label>PDF File (Optional, max 5 MB)</label><input type="file" id="shareFile" accept=".pdf"></div>
-   </div>
-   <button class="btn" style="margin-top:14px">Submit Resource</button>
-  </form>
-  <p style="color:var(--muted);font-size:11px;margin-top:15px">Demo: This form stores submissions in this browser only. A backend is required for public sharing.</p>
- </div>
-</section>
-
-<!-- AI -->
-<section class="page" id="ai">
- <div class="panel">
-  <h1>🤖 ORBIT AI Tutor</h1>
-  <p style="color:var(--muted);margin:8px 0 20px">Your learning assistant.</p>
-  <div class="panel" style="background:#091a35">
-   <h3>Ask Your Study Questions</h3>
-   <p style="color:var(--muted);font-size:13px;margin-top:9px">Ask questions and explore learning topics with AI assistance.</p>
-   <textarea id="aiQuestion" placeholder="Enter your question..." style="width:100%;margin-top:15px;min-height:100px;padding:12px;background:#102448;border:1px solid var(--border);color:white;border-radius:9px"></textarea>
-   <button class="btn" style="margin-top:12px" onclick="askAI()">Ask AI Tutor ↗</button>
-   <div id="aiAnswer" style="margin-top:15px;color:var(--muted);font-size:13px"></div>
-  </div>
-  <p style="color:var(--muted);font-size:11px">Real AI answers require a secure backend and AI API connection.</p>
- </div>
-</section>
-
-<!-- REPORT -->
-<section class="page" id="report">
- <div class="panel">
-  <h1>🏆 Daily Study Report</h1>
-  <p style="color:var(--muted);margin:8px 0 20px">Track your learning progress.</p>
-  <div class="stat-grid">
-   <div class="stat"><div class="number" id="reportTotal">0</div><p>Total Tasks</p></div>
-   <div class="stat"><div class="number" id="reportDone">0</div><p>Completed</p></div>
-   <div class="stat"><div class="number" id="reportRate">0%</div><p>Success Rate</p></div>
-  </div>
-  <h3>Overall Progress</h3>
-  <div class="progress-track" style="height:14px"><div class="progress-fill" id="reportBar"></div></div>
-  <p id="reportText" style="color:var(--muted);font-size:13px;margin-top:15px"></p>
- </div>
-</section>
-
-<footer class="footer">✦ LEARN WITH ORBIT · LEARN • EXPLORE • GROW<br><br>© 2026 Learn with Orbit</footer>
-</main>
-</div>
-
-<nav class="mobile-nav">
- <button class="active" onclick="showPage('home',this)"><span>⌂</span>Home</button>
- <button onclick="showPage('study',this)"><span>▦</span>Study</button>
- <button onclick="showPage('search',this)"><span>⌕</span>Search</button>
- <button onclick="showPage('notes',this)"><span>📝</span>Notes</button>
- <button onclick="showPage('tasks',this)"><span>☑</span>Tasks</button>
-</nav>
-
-<script>
-/* STORAGE */
-const getData=(key,def=[])=>{
- try{return JSON.parse(localStorage.getItem('orbit_'+key))||def}catch(e){return def}
-};
-const saveData=(key,data)=>localStorage.setItem('orbit_'+key,JSON.stringify(data));
-
-let tasks=getData('tasks');
-let notes=getData('notes');
-let websites=getData('websites');
-let channels=getData('channels');
-let favourites=getData('favourites');
-let materials=getData('materials');
-let filter='all';
-let calendarDate=new Date();
-
-/* NAVIGATION */
-function showPage(id,button){
- document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
- const page=document.getElementById(id);
- if(page)page.classList.add('active');
-
- document.querySelectorAll('.nav-link').forEach(a=>{
-  a.classList.toggle('active',a.dataset.page===id);
- });
- document.querySelectorAll('.mobile-nav button').forEach(b=>b.classList.remove('active'));
- if(button && button.closest('.mobile-nav'))button.classList.add('active');
- else {
-  const index={home:0,study:1,search:2,notes:3,tasks:4}[id];
-  if(index!==undefined)document.querySelectorAll('.mobile-nav button')[index].classList.add('active');
- }
- document.getElementById('sidebar').classList.remove('open');
- window.scrollTo({top:0,behavior:'smooth'});
- renderAll();
-}
-document.querySelectorAll('.nav-link').forEach(a=>{
- a.addEventListener('click',()=>showPage(a.dataset.page));
-});
-function toggleMenu(){document.getElementById('sidebar').classList.toggle('open')}
-
-/* SEARCH */
-function setFilter(value,button){
- filter=value;
- document.querySelectorAll('.search-tabs .tab').forEach(b=>b.classList.remove('active'));
- button.classList.add('active');
-}
-function buildQuery(){
- return [
-  document.getElementById('searchClass').value,
-  document.getElementById('searchSubject').value,
-  document.getElementById('topic').value.trim()
- ].filter(Boolean).join(' ');
-}
-function performSearch(){
- const q=buildQuery();
- if(!q){alert('Please select a class, subject or enter a topic.');return}
- const engine=document.getElementById('engine').value;
- let url;
- if(filter==='youtube')url='https://www.youtube.com/results?search_query='+encodeURIComponent(q);
- else if(filter==='web')url='https://www.google.com/search?q='+encodeURIComponent(q);
- else if(engine==='bing')url='https://www.bing.com/search?q='+encodeURIComponent(q);
- else if(engine==='duck')url='https://duckduckgo.com/?q='+encodeURIComponent(q);
- else url='https://www.google.com/search?q='+encodeURIComponent(q);
- document.getElementById('searchMessage').textContent='Opening learning results for: '+q;
- window.open(url,'_blank','noopener');
- saveRecent(q);
-}
-function homeSearch(){
- document.getElementById('searchClass').value=document.getElementById('homeClass').value;
- document.getElementById('searchSubject').value=document.getElementById('homeSubject').value;
- document.getElementById('topic').value=document.getElementById('homeTopic').value;
- showPage('search');
- performSearch();
-}
-function goSearch(q){
- showPage('search');
- document.getElementById('topic').value=q;
- performSearch();
-}
-function saveRecent(q){
- let recent=getData('recent');
- recent.unshift(q);saveData('recent',recent.slice(0,10));
-}
-
-/* TASKS */
-function addTask(e){
- e.preventDefault();
- tasks.push({
-  id:Date.now(),title:taskTitle.value.trim(),
-  subject:taskSubject.value,date:taskDate.value,
-  duration:taskDuration.value,priority:taskPriority.value,
-  done:false
- });
- saveData('tasks',tasks);e.target.reset();
- taskDuration.value=30;
- renderAll();
- alert('Study task added!');
-}
-function toggleTask(id){
- tasks=tasks.map(t=>t.id===id?{...t,done:!t.done}:t);
- saveData('tasks',tasks);renderAll();
-}
-function deleteTask(id){
- tasks=tasks.filter(t=>t.id!==id);
- saveData('tasks',tasks);renderAll();
-}
-function clearCompleted(){
- tasks=tasks.filter(t=>!t.done);
- saveData('tasks',tasks);renderAll();
-}
-function taskHTML(t){
- return `<div class="item">
-  <div class="item-info">
-   <strong style="${t.done?'text-decoration:line-through;color:#8aa0bd':''}">${esc(t.title)}</strong>
-   <small>${esc(t.subject)} · ${esc(t.date)} · ${t.duration} min · ${esc(t.priority)}</small>
-  </div>
-  <div class="item-actions">
-   <button class="small-btn ${t.done?'done':''}" onclick="toggleTask(${t.id})">${t.done?'Done':'Complete'}</button>
-   <button class="small-btn" onclick="deleteTask(${t.id})">✕</button>
-  </div>
- </div>`;
-}
-
-/* NOTES */
-function saveNote(e){
- e.preventDefault();
- notes.unshift({id:Date.now(),title:noteTitle.value.trim(),subject:noteSubject.value,content:noteContent.value,date:new Date().toLocaleDateString()});
- saveData('notes',notes);e.target.reset();renderAll();alert('Note saved!');
-}
-function deleteNote(id){
- notes=notes.filter(n=>n.id!==id);saveData('notes',notes);renderAll();
-}
-function noteHTML(n){
- return `<div class="note-card">
- <h3>${esc(n.title)}</h3>
- <small style="color:#58baff">${esc(n.subject)} · ${esc(n.date)}</small>
- <p style="margin-top:10px">${esc(n.content)}</p>
- <button class="small-btn" style="margin-top:12px" onclick="deleteNote(${n.id})">Delete</button>
- </div>`;
-}
-
-/* WEBSITES AND YOUTUBE */
-function addResource(e,type){
- e.preventDefault();
- const isWeb=type==='web';
- const name=document.getElementById(isWeb?'webName':'ytName').value.trim();
- const url=document.getElementById(isWeb?'webUrl':'ytUrl').value.trim();
- if(!/^https?:\/\//i.test(url)){alert('Enter a valid http or https URL.');return}
- const list=isWeb?websites:channels;
- list.push({id:Date.now(),name,url});
- saveData(isWeb?'websites':'channels',list);
- e.target.reset();renderAll();alert('Resource added!');
-}
-function deleteResource(type,id){
- if(type==='web'){websites=websites.filter(x=>x.id!==id);saveData('websites',websites)}
- else{channels=channels.filter(x=>x.id!==id);saveData('channels',channels)}
- renderAll();
-}
-function toggleFavourite(item,type){
- const exists=favourites.some(f=>f.url===item.url);
- if(exists)favourites=favourites.filter(f=>f.url!==item.url);
- else favourites.push({...item,type});
- saveData('favourites',favourites);renderAll();
-}
-function resourceHTML(item,type){
- const fav=favourites.some(f=>f.url===item.url);
- return `<div class="item">
- <div class="item-info"><strong>${esc(item.name)}</strong><small>${esc(item.url)}</small></div>
- <div class="item-actions">
- <button class="small-btn" onclick="window.open('${safeURL(item.url)}','_blank','noopener')">Open ↗</button>
- <button class="small-btn" onclick="toggleFavourite(${JSON.stringify(item).replace(/"/g,'&quot;')},'${type}')">${fav?'♥':'♡'}</button>
- <button class="small-btn" onclick="deleteResource('${type}',${item.id})">✕</button>
- </div></div>`;
-}
-
-/* UPLOAD */
-function submitMaterial(e){
- e.preventDefault();
- const file=shareFile.files[0];
- if(file && (file.type!=='application/pdf'||file.size>5*1024*1024)){
- alert('Please select a PDF file under 5 MB.');return;
- }
- const data={name:shareName.value,title:shareTitle.value,category:shareCategory.value,description:shareDescription.value,date:new Date().toLocaleDateString(),fileName:file?file.name:''};
- materials.push(data);saveData('materials',materials);
- e.target.reset();
- alert('Demo submission saved in this browser only. Public sharing needs a backend.');
-}
-
-/* CALENDAR */
-function changeMonth(step){calendarDate.setMonth(calendarDate.getMonth()+step);renderCalendar()}
-function calendarHTML(){
- const year=calendarDate.getFullYear(),month=calendarDate.getMonth();
- const first=new Date(year,month,1).getDay();
- const days=new Date(year,month+1,0).getDate();
- const today=new Date();
- let html=`<div class="calendar-head"><strong>${calendarDate.toLocaleString('en',{month:'long',year:'numeric'})}</strong></div><div class="calendar-grid">`;
- ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(d=>html+=`<div class="day-name">${d}</div>`);
- for(let i=0;i<first;i++)html+='<div></div>';
- for(let d=1;d<=days;d++){
-  const date=`${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-  const isToday=d===today.getDate()&&month===today.getMonth()&&year===today.getFullYear();
-  const has=tasks.some(t=>t.date===date);
-  html+=`<div class="${isToday?'today ':''}${has?'has-task':''}">${d}</div>`;
- }
- return html+'</div>';
-}
-function renderCalendar(){
- const html=calendarHTML();
- document.getElementById('fullCalendar').innerHTML=html;
- document.getElementById('homeCalendar').innerHTML=html;
-}
-
-/* PROGRESS AND RENDERING */
-function renderAll(){
- const total=tasks.length,done=tasks.filter(t=>t.done).length;
- const percent=total?Math.round(done/total*100):0;
- const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value};
- set('homeProgress',percent+'%');set('taskCount',`${done} / ${total} Tasks Completed`);
- const bar=document.getElementById('homeBar');if(bar)bar.style.width=percent+'%';
- set('studyTotal',total);set('studyDone',done);set('studyPercent',percent+'%');
- set('reportTotal',total);set('reportDone',done);set('reportRate',percent+'%');
- const rb=document.getElementById('reportBar');if(rb)rb.style.width=percent+'%';
- set('reportText',`${done} of ${total} study tasks completed. Keep going!`);
-
- const allTasks=tasks.slice().sort((a,b)=>a.date.localeCompare(b.date));
- document.getElementById('taskList').innerHTML=allTasks.map(taskHTML).join('')||'<div class="empty">No tasks yet. Add your first study task!</div>';
- document.getElementById('studyTaskList').innerHTML=allTasks.map(taskHTML).join('')||'<div class="empty">Your study schedule is empty.</div>';
- document.getElementById('homeTasks').innerHTML=allTasks.slice(0,4).map(taskHTML).join('')||'<div class="empty">No tasks planned yet.</div>';
-
- document.getElementById('notesList').innerHTML=notes.map(noteHTML).join('')||'<div class="empty">No notes saved yet.</div>';
- document.getElementById('homeNotes').innerHTML=notes.slice(0,3).map(n=>`<div class="item"><div class="item-info"><strong>${esc(n.title)}</strong><small>${esc(n.subject)}</small></div></div>`).join('')||'<div class="empty">No recent notes.</div>';
-
- document.getElementById('webList').innerHTML=websites.map(x=>resourceHTML(x,'web')).join('')||'<div class="empty">Add your first educational website.</div>';
- document.getElementById('ytList').innerHTML=channels.map(x=>resourceHTML(x,'yt')).join('')||'<div class="empty">Add your favourite learning channel.</div>';
- document.getElementById('favList').innerHTML=favourites.map(x=>resourceHTML(x,x.type==='web'?'web':'yt')).join('')||'<div class="empty">Your favourite resources will appear here.</div>';
- renderCalendar();
-}
-function esc(s){
- return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-function safeURL(s){
- try{const u=new URL(s);return ['http:','https:'].includes(u.protocol)?u.href:'#'}catch(e){return '#'}
-}
-
-/* AI TUTOR DEMO */
-function askAI(){
- const q=document.getElementById('aiQuestion').value.trim();
- if(!q){alert('Please enter a question.');return}
- document.getElementById('aiAnswer').innerHTML=
- `AI connection is not configured yet. You can search this question using Orbit Smart Search.`;
-}
-
-/* START */
-document.getElementById('taskDate').value=new Date().toISOString().slice(0,10);
-const savedName=localStorage.getItem('orbit_student_name');
-if(savedName)document.getElementById('welcomeName').textContent=savedName;
-else{
- const name=prompt('Welcome to Learn with Orbit! What is your name?');
- if(name&&name.trim()){
-  localStorage.setItem('orbit_student_name',name.trim());
-  document.getElementById('welcomeName').textContent=name.trim();
- }
-}
-renderAll();
-</script>
-</body>
-</html>
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta name="theme-color" content="#050b1c">  <!-- GOOGLE SEO -->  <title>Learn with Orbit | Free Study Materials & Learning Hub</title>  
+<meta name="description" content="Learn with Orbit is a free educational platform for students. Find Tamil Nadu school study materials, 12th question papers, mock exams, notes, educational websites and YouTube learning channels.">  
+<meta name="keywords" content="Learn with Orbit, Orbit Study Hub, free study materials, Tamil Nadu education, 12th study materials, question papers, mock exams, online learning">  
+<meta name="robots" content="index, follow">  
+<meta name="author" content="Learn with Orbit">  
+<meta name="application-name" content="Learn with Orbit">  <!-- CANONICAL URL -->  <link rel="canonical" href="https://learn-with-orbit.vercel.app/">  <!-- OPEN GRAPH -->  <meta property="og:type" content="website">  
+<meta property="og:site_name" content="Learn with Orbit">  
+<meta property="og:title" content="Learn with Orbit | Smart Learning Hub">  
+<meta property="og:description" content="Learn, Explore and Grow. Discover free educational resources, study materials, question papers and learning websites.">  
+<meta property="og:url" content="https://learn-with-orbit.vercel.app/">  
+<meta property="og:image" content="https://learn-with-orbit.vercel.app/">  <!-- TWITTER -->  <meta name="twitter:card" content="summary">  
+<meta name="twitter:title" content="Learn with Orbit">  
+<meta name="twitter:description" content="Your free smart learning hub for students.">  <!-- GOOGLE STRUCTURED DATA -->  <script type="application/ld+json">  
+{  
+  "@context": "https://schema.org",  
+  "@type": "WebSite",  
+  "name": "Learn with Orbit",  
+  "alternateName": "ORBIT Smart Learning Hub",  
+  "url": "https://learn-with-orbit.vercel.app/",  
+  "description": "A free educational learning hub for students.",  
+  "inLanguage": "en"  
+}  
+</script>  <style>  
+:root {  
+--bg:#050b1c;  
+--panel:#0c1930;  
+--line:#1b3152;  
+--text:#f4f7ff;  
+--muted:#a5b6d0;  
+--blue:#168cff;  
+}  
+*{margin:0;padding:0;box-sizing:border-box}  
+html{scroll-behavior:smooth}  
+body{background:var(--bg);color:var(--text);font-family:Arial,sans-serif;line-height:1.6}  
+a{text-decoration:none;color:inherit}  
+button{cursor:pointer;font:inherit;border:0}  
+header{position:sticky;top:0;z-index:100;background:#050b1cf5;border-bottom:1px solid var(--line);padding:13px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px}  
+.logo{font-size:25px;font-weight:900;letter-spacing:3px;color:white}  
+.logo small{display:block;font-size:10px;letter-spacing:2px;color:#65a9e9}  
+nav{display:flex;gap:16px;overflow-x:auto}  
+nav a{font-size:13px;white-space:nowrap;color:#c4d4ef}  
+nav a:hover{color:#36c5ff}  
+.header-btn,.primary{background:linear-gradient(120deg,#293dff,#168cff);color:white;padding:11px 17px;border-radius:8px;font-size:13px;white-space:nowrap}  
+.orbit-home{background:radial-gradient(circle at 75% 40%,#102d69 0%,transparent 35%),linear-gradient(120deg,#030817,#07132b 60%,#030817);padding:55px 7% 30px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:20px}  
+.home-content h1{font-size:clamp(32px,5vw,54px);line-height:1.15;margin:22px 0 15px}  
+.home-content h1 span{color:#32a8ff}  
+.blue-text{background:linear-gradient(90deg,#26baff,#626aff);background-clip:text;-webkit-background-clip:text;color:transparent}  
+.home-content p{color:#b4c2dc;max-width:430px;font-size:13px}  
+.home-tag{display:inline-block;color:#57c9ff;background:#0c2946;border:1px solid #164d7b;padding:7px 13px;border-radius:30px;font-size:11px}  
+.home-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}  
+.home-primary,.home-secondary{padding:12px 16px;border-radius:8px;font-size:12px;display:inline-block}  
+.home-primary{background:linear-gradient(120deg,#293dff,#168cff)}  
+.home-secondary{border:1px solid #355078;color:#e1eaff}  
+.home-visual{min-height:260px;display:flex;align-items:center;justify-content:center;position:relative}  
+.book{font-size:150px;filter:drop-shadow(0 0 18px #328dff);animation:float 3s infinite}  
+@keyframes float{50%{transform:translateY(-13px)}}  
+.home-features{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px}  
+.home-feature,.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}  
+.home-feature h3,.card h3{font-size:15px;margin:7px 0}  
+.home-feature p,.card p{font-size:12px;color:var(--muted)}  
+.feature-icon,.card-icon{font-size:25px}  
+.home-stats{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;background:#0b1a32;border:1px solid var(--line);border-radius:12px;padding:18px}  
+.home-stat{text-align:center}  
+.home-stat strong{display:block;color:#55baff}  
+.home-stat small{color:var(--muted)}  
+.container{max-width:1200px;margin:auto;padding:35px 5%}  
+.section{margin-bottom:48px;scroll-margin-top:100px}  
+.heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px}  
+.heading h2{font-size:22px}  
+.heading span{font-size:12px;color:var(--muted)}  
+.searchbox,.panel,.chat{background:var(--panel);padding:22px;border:1px solid var(--line);border-radius:15px}  
+.empty{color:var(--muted);font-size:13px;padding:8px 0}  
+.searchrow{display:flex;gap:9px;margin-top:12px}  
+input,select,textarea{width:100%;padding:13px;background:#081429;border:1px solid #29405f;border-radius:9px;color:white;font:inherit;outline:none}  
+input:focus,select:focus,textarea:focus{border-color:#3b9dff}  
+.filters{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}  
+.filters button,.secondary,.fav{background:#142847;color:#cce4ff;padding:10px 14px;border-radius:8px}  
+.filters button.active{background:#168cff}  
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}  
+.card{transition:.2s;overflow-wrap:anywhere}  
+.card:hover{transform:translateY(-3px);border-color:#2866a4}  
+.card-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}  
+.badge{display:inline-block;background:#122e4c;color:#71caff;border-radius:20px;padding:4px 9px;font-size:11px}  
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}  
+.stat{text-align:center;background:#10213b;padding:17px;border-radius:12px}  
+.stat strong{display:block;color:#55baff;font-size:20px}  
+.stat small{color:var(--muted)}  
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}  
+.formgroup{margin-bottom:13px}  
+.formgroup label{display:block;font-size:12px;margin-bottom:6px;color:#c4d4e9}  
+.full{width:100%}  
+.notice{background:#102b49;padding:14px;border-radius:9px;color:#9bc8ed;font-size:12px;margin-top:12px}  
+.result{padding:15px;background:#0b1a30;border:1px solid var(--line);border-radius:10px;margin-top:10px}  
+.result h3{font-size:14px}  
+.result p{font-size:12px;color:var(--muted)}  
+.result a{color:#64b9ff;font-size:13px;font-weight:bold}  
+.chatmessages{max-height:300px;overflow:auto;margin:15px 0}  
+.message{background:#142b49;padding:12px;border-radius:10px;margin:8px 0;font-size:13px}  
+.message.user{background:#17395a;text-align:right}  
+footer{text-align:center;padding:35px;background:#08152a;color:#9eb2cf}  
+footer strong{font-size:23px;letter-spacing:3px;color:#55baff}  
+@media(max-width:750px){  
+header{flex-direction:column;align-items:flex-start}  
+nav{width:100%;padding-bottom:5px}  
+.header-btn{display:none}  
+.orbit-home{grid-template-columns:1fr;text-align:center;padding:45px 18px 25px}  
+.home-content p{margin:auto}  
+.home-buttons{justify-content:center}  
+.home-visual{min-height:200px}  
+.home-features{grid-template-columns:repeat(2,1fr)}  
+.home-stats,.stats{grid-template-columns:repeat(2,1fr)}  
+}  
+@media(max-width:520px){  
+.container{padding:25px 14px}  
+.searchrow{flex-direction:column}  
+.searchrow button{width:100%}  
+.formgrid{grid-template-columns:1fr}  
+.heading h2{font-size:18px}  
+}  
+</style>  </head>  <body>  <header>  
+<a href="#home" class="logo"><span style="color:#168cff">✦</span> ORBIT  
+<small>LEARN • EXPLORE • GROW</small></a>  
+<nav>  
+<a href="#home">Home</a>  
+<a href="#smart">Search</a>  
+<a href="#study">Study</a>  
+<a href="#websites">Websites</a>  
+<a href="#channels">YouTube</a>  
+<a href="#favorites">Favourites</a>  
+<a href="#upload">Upload</a>  
+<a href="#ai">AI Tutor</a>  
+</nav>  
+<a href="#smart" class="header-btn">Study Now ↗</a>  
+</header>  <section class="orbit-home" id="home">  
+<div class="home-content">  
+<span class="home-tag">✦ 100% FREE FOR STUDENTS</span>  
+<h1>Learn with Orbit 🚀<br>  
+All Your Study<br>Resources in <span>One</span><br>  
+<span class="blue-text">Smart Hub</span></h1>  
+<p>Access mock exams, reference sheets, expected papers and more free resources to help you study smarter and achieve better results.</p>  
+<div class="home-buttons">  
+<a href="#smart" class="home-primary">Explore Resources ▣</a>  
+<a href="#study" class="home-secondary">View Study Materials</a>  
+</div>  
+</div>  <div class="home-visual">  
+<div class="book">📖</div>  
+</div>  <div class="home-features">  
+<div class="home-feature"><div class="feature-icon">📋</div><h3>Mock Exams</h3><p>Practice with mock exams.</p></div>  
+<div class="home-feature"><div class="feature-icon">📗</div><h3>Reference Sheets</h3><p>Quick revision materials.</p></div>  
+<div class="home-feature"><div class="feature-icon">🎯</div><h3>Expected Papers</h3><p>Important exam topics.</p></div>  
+<div class="home-feature"><div class="feature-icon">☏</div><h3>WhatsApp Updates</h3><p>Stay updated.</p></div>  
+<div class="home-feature"><div class="feature-icon">🎁</div><h3>100% Free</h3><p>Free learning resources.</p></div>  
+</div>  <div class="home-stats">  
+<div class="home-stat">⭐<strong>100%</strong><small>Free</small></div>  
+<div class="home-stat">◷<strong>24/7</strong><small>Accessible</small></div>  
+<div class="home-stat">👥<strong>Growing</strong><small>Community</small></div>  
+<div class="home-stat">🛡️<strong>Learning</strong><small>Resources</small></div>  
+</div>  
+</section>  <main class="container">  <section class="section" id="smart">  
+<div class="heading"><h2>🔍 ORBIT Smart Study Search</h2></div>  
+<div class="searchbox">  
+<h3>What do you want to learn?</h3>  
+<p class="empty">Example: 12th Maths Integration, DBMS Normalization</p>  
+<div class="formgrid">  
+<select id="className">  
+<option value="">All Classes</option>  
+<option>6th Standard</option><option>7th Standard</option>  
+<option>8th Standard</option><option>9th Standard</option>  
+<option>10th Standard</option><option>11th Standard</option>  
+<option>12th Standard</option><option>College</option>  
+</select>  
+<select id="subject">  
+<option value="">All Subjects</option>  
+<option>Maths</option><option>Physics</option>  
+<option>Chemistry</option><option>Biology</option>  
+<option>Computer Science</option><option>Tamil</option>  
+<option>English</option><option>Social Science</option>  
+<option>Commerce</option><option>DBMS</option>  
+</select>  
+</div>  
+<div class="searchrow">  
+<input id="query" placeholder="Type your lesson or question...">  
+<button class="primary" onclick="smartSearch()">Search</button>  
+</div>  
+<div class="filters">  
+<button class="active" onclick="setMode('all',this)">All</button>  
+<button onclick="setMode('web',this)">Websites</button>  
+<button onclick="setMode('youtube',this)">YouTube</button>  
+</div>  
+<div id="searchResults"></div>  
+</div>  
+</section>  <section class="section" id="websites">  
+<div class="heading"><h2>🌐 Educational Websites</h2><span id="webCount"></span></div>  
+<div class="searchrow">  
+<input id="webFilter" placeholder="Search website..." oninput="renderWebsites()">  
+<button class="secondary" onclick="openGoogleWeb()">Search Web</button>  
+</div>  
+<div class="grid" id="websiteList" style="margin-top:16px"></div>  
+<div class="panel" style="margin-top:18px">  
+<h3>➕ Add Your Own Website</h3>  
+<div class="formgrid" style="margin-top:12px">  
+<input id="newWebName" placeholder="Website name">  
+<input id="newWebUrl" placeholder="https://example.com">  
+</div>  
+<input id="newWebDesc" placeholder="Description" style="margin-top:10px">  
+<button class="primary" style="margin-top:10px" onclick="addWebsite()">Add Website</button>  
+</div>  
+</section>  <section class="section" id="channels">  
+<div class="heading"><h2>▶️ YouTube Learning Channels</h2><span id="channelCount"></span></div>  
+<div class="searchrow">  
+<input id="channelFilter" placeholder="Search channel..." oninput="renderChannels()">  
+<button class="secondary" onclick="openYouTube()">Search YouTube</button>  
+</div>  
+<div class="grid" id="channelList" style="margin-top:16px"></div>  
+<div class="panel" style="margin-top:18px">  
+<h3>➕ Add YouTube Channel</h3>  
+<div class="formgrid" style="margin-top:12px">  
+<input id="newChannelName" placeholder="Channel name">  
+<input id="newChannelUrl" placeholder="Channel URL (optional)">  
+</div>  
+<input id="newChannelDesc" placeholder="Description" style="margin-top:10px">  
+<button class="primary" style="margin-top:10px" onclick="addChannel()">Add Channel</button>  
+</div>  
+</section>  <section class="section" id="study">  
+<div class="heading"><h2>📚 Study Categories</h2></div>  
+<div class="grid">  
+<div class="card"><div class="card-icon">📝</div><h3>Important Questions</h3><p>Exam preparation questions.</p><a href="#" onclick="quickSearch('important questions');return false">Explore →</a></div>  
+<div class="card"><div class="card-icon">📄</div><h3>Question Papers</h3><p>Previous year and model papers.</p><a href="#" onclick="quickSearch('previous year question papers');return false">Explore →</a></div>  
+<div class="card"><div class="card-icon">📖</div><h3>Study Notes</h3><p>Subject-wise study notes.</p><a href="#" onclick="quickSearch('study notes');return false">Explore →</a></div>  
+<div class="card"><div class="card-icon">🎓</div><h3>College Materials</h3><p>College study materials.</p><a href="#" onclick="quickSearch('college study materials');return false">Explore →</a></div>  
+<div class="card"><div class="card-icon">🧪</div><h3>Practical Materials</h3><p>Lab records and practical lessons.</p><a href="#" onclick="quickSearch('practical materials');return false">Explore →</a></div>  
+<div class="card"><div class="card-icon">🎯</div><h3>Online Learning</h3><p>Explore online lessons.</p><a href="#channels">Explore →</a></div>  
+</div>  
+<div class="stats">  
+<div class="stat"><strong id="totalWeb">0</strong><small>Websites</small></div>  
+<div class="stat"><strong id="totalChannels">0</strong><small>Channels</small></div>  
+<div class="stat"><strong>24/7</strong><small>Access</small></div>  
+<div class="stat"><strong>Free</strong><small>Learning</small></div>  
+</div>  
+</section>  <section class="section" id="favorites">  
+<div class="heading"><h2>⭐ My Favourites</h2></div>  
+<div class="grid" id="favoriteList"></div>  
+</section>  <section class="section">  
+<div class="heading"><h2>🕘 Recent Searches</h2><button class="secondary" onclick="clearHistory()">Clear</button></div>  
+<div id="historyList" class="panel"><p class="empty">No searches yet.</p></div>  
+</section>  <section class="section" id="upload">  
+<div class="heading"><h2>📤 Share Study Materials</h2></div>  
+<div class="panel">  
+<form id="uploadForm">  
+<div class="formgrid">  
+<div class="formgroup"><label>Your Name</label><input id="userName" required maxlength="60"></div>  
+<div class="formgroup"><label>Category</label>  
+<select id="uploadCategory">  
+<option>Important Questions</option><option>Question Paper</option><option>Study Notes</option><option>College Materials</option><option>Practical Materials</option>  
+</select>  
+</div>  
+</div>  
+<div class="formgroup"><label>Title</label><input id="uploadTitle" required maxlength="150"></div>  
+<div class="formgroup"><label>Description</label><textarea id="uploadDescription" required maxlength="3000"></textarea></div>  
+<div class="formgroup"><label>PDF (Optional, max 5 MB)</label><input id="uploadFile" type="file" accept=".pdf,application/pdf"></div>  
+<button class="primary full" type="submit">Submit Resource</button>  
+</form>  
+<p class="notice" id="uploadMessage">Demo upload: submissions are stored only in this browser.</p>  
+</div>  
+</section>  <section class="section" id="ai">  
+<div class="heading"><h2>🤖 ORBIT AI Tutor</h2></div>  
+<div class="chat">  
+<span class="badge">AI Assistant Demo</span>  
+<h3>Ask Your Study Questions</h3>  
+<div class="chatmessages" id="chatMessages">  
+<div class="message">Welcome to ORBIT! AI connection needs to be configured.</div>  
+</div>  
+<div class="searchrow">  
+<input id="aiInput" placeholder="Ask your study question...">  
+<button class="primary" onclick="askAI()">Send</button>  
+</div>  
+<p class="notice">Real AI answers require a secure backend and AI API.</p>  
+</div>  
+</section>  <section class="section">  
+<div class="heading"><h2>🌿 About Learn with Orbit</h2></div>  
+<div class="panel">  
+Learn with Orbit is a free learning platform designed to help students discover educational websites, videos, study materials and learning resources in one place.  
+</div>  
+</section>  </main>  <footer>  
+<strong>LEARN WITH ORBIT</strong>  
+<p>Learn • Explore • Grow</p>  
+<p>One Search. Unlimited Knowledge.</p>  
+<p>© 2026 Learn with Orbit</p>  
+<a href="https://learn-with-orbit.vercel.app/">learn-with-orbit.vercel.app</a>  
+</footer>  <script>  
+const defaultWebsites=[  
+{name:"Padasalai",url:"https://www.padasalai.net/",desc:"Tamil Nadu school materials",type:"Tamil Nadu"},  
+{name:"DIKSHA",url:"https://diksha.gov.in/",desc:"Digital education resources",type:"Official"},  
+{name:"NCERT",url:"https://ncert.nic.in/",desc:"Textbooks and education resources",type:"Official"},  
+{name:"SWAYAM",url:"https://swayam.gov.in/",desc:"Free online courses",type:"Official"},  
+{name:"ePathshala",url:"https://epathshala.nic.in/",desc:"Digital textbooks",type:"Official"},  
+{name:"Tamil Nadu Textbooks",url:"https://textbookcorp.tn.gov.in/",desc:"Tamil Nadu textbooks",type:"Official"},  
+{name:"TN SCERT",url:"https://tnscert.org/",desc:"Educational resources",type:"Official"},  
+{name:"Khan Academy",url:"https://www.khanacademy.org/",desc:"Maths and science",type:"International"},  
+{name:"NPTEL",url:"https://nptel.ac.in/",desc:"College courses",type:"College"},  
+{name:"NDLI",url:"https://ndl.iitkgp.ac.in/",desc:"National Digital Library",type:"India"},  
+{name:"GeeksforGeeks",url:"https://www.geeksforgeeks.org/",desc:"Programming",type:"Technology"},  
+{name:"W3Schools",url:"https://www.w3schools.com/",desc:"Web development",type:"Technology"},  
+{name:"MDN Web Docs",url:"https://developer.mozilla.org/",desc:"Web development",type:"Technology"},  
+{name:"PhET Simulations",url:"https://phet.colorado.edu/",desc:"Interactive science",type:"International"},  
+{name:"Coursera",url:"https://www.coursera.org/",desc:"Online courses",type:"International"}  
+];  
+  
+const defaultChannels=[  
+{name:"Ram Maths",query:"Ram Maths Tamil",desc:"Maths lessons"},  
+{name:"Muruga MP",query:"Muruga MP Tamil education",desc:"Tamil education"},  
+{name:"Khan Academy",query:"Khan Academy",desc:"Maths and science"},  
+{name:"Physics Wallah",query:"Physics Wallah",desc:"Science education"},  
+{name:"Unacademy",query:"Unacademy",desc:"Educational lessons"},  
+{name:"Kalvi TV",query:"Kalvi TV Tamil Nadu",desc:"School lessons"},  
+{name:"Tutor Joes",query:"Tutor Joes Tamil",desc:"Computer science"},  
+{name:"Error Makes Clever",query:"Error Makes Clever Tamil",desc:"Computer science"},  
+{name:"freeCodeCamp",query:"freeCodeCamp",desc:"Programming"},  
+{name:"CodeWithHarry",query:"CodeWithHarry",desc:"Coding lessons"},  
+{name:"Apna College",query:"Apna College",desc:"Programming"},  
+{name:"Vedantu",query:"Vedantu",desc:"School learning"}  
+];  
+  
+function loadData(key,fallback){  
+try{  
+const d=JSON.parse(localStorage.getItem(key));  
+return Array.isArray(d)?d:fallback;  
+}catch(e){return fallback}  
+}  
+function save(key,data){  
+try{localStorage.setItem(key,JSON.stringify(data))}  
+catch(e){alert("Browser storage is full.")}  
+}  
+  
+let websites=loadData("orbitWebsites",defaultWebsites);  
+let channels=loadData("orbitChannels",defaultChannels);  
+let favorites=loadData("orbitFavorites",[]);  
+let history=loadData("orbitHistory",[]);  
+let mode="all";  
+  
+function safeUrl(url){  
+try{  
+const u=new URL(url);  
+return ["https:","http:"].includes(u.protocol)?u.href:null;  
+}catch(e){return null}  
+}  
+function openLink(url){  
+const valid=safeUrl(url);  
+if(valid)window.open(valid,"_blank","noopener,noreferrer");  
+else alert("Please check the URL.");  
+}  
+  
+function renderWebsites(){  
+const q=document.getElementById("webFilter").value.toLowerCase();  
+const list=document.getElementById("websiteList");  
+list.replaceChildren();  
+const filtered=websites.filter(w=>(w.name+" "+w.desc+" "+w.type).toLowerCase().includes(q));  
+document.getElementById("webCount").textContent=filtered.length+" shown / "+websites.length+" total";  
+filtered.forEach(w=>{  
+const card=document.createElement("div");card.className="card";  
+const title=document.createElement("h3");title.textContent=w.name;  
+const desc=document.createElement("p");desc.textContent=w.desc;  
+const badge=document.createElement("span");badge.className="badge";badge.textContent=w.type||"Custom";  
+const actions=document.createElement("div");actions.className="card-actions";  
+const open=document.createElement("button");open.className="secondary";open.textContent="Visit ↗";open.onclick=()=>openLink(w.url);  
+const fav=document.createElement("button");fav.className="fav";fav.textContent="⭐";fav.onclick=()=>toggleFavorite("web",w.name,w.url);  
+actions.append(open,fav);  
+if(w.custom){  
+const remove=document.createElement("button");remove.className="fav";remove.textContent="Remove";  
+remove.onclick=()=>removeWebsite(w.name);actions.append(remove);  
+}  
+card.append(title,desc,badge,actions);list.append(card);  
+});  
+document.getElementById("totalWeb").textContent=websites.length;  
+}  
+  
+function addWebsite(){  
+const name=document.getElementById("newWebName").value.trim();  
+const url=document.getElementById("newWebUrl").value.trim();  
+const desc=document.getElementById("newWebDesc").value.trim();  
+if(!name||!safeUrl(url)){alert("Enter a name and valid URL.");return}  
+if(websites.some(w=>w.name.toLowerCase()===name.toLowerCase())){alert("Website already exists.");return}  
+websites.push({name,url,desc:desc||"Custom website",type:"Custom",custom:true});  
+save("orbitWebsites",websites);  
+["newWebName","newWebUrl","newWebDesc"].forEach(id=>document.getElementById(id).value="");  
+renderWebsites();  
+}  
+function removeWebsite(name){  
+if(!confirm("Remove "+name+"?"))return;  
+websites=websites.filter(w=>!(w.name===name&&w.custom));  
+save("orbitWebsites",websites);renderWebsites();  
+}  
+  
+function channelUrl(c){  
+return c.url&&safeUrl(c.url)?c.url:"https://www.youtube.com/results?search_query="+encodeURIComponent(c.query||c.name);  
+}  
+function renderChannels(){  
+const q=document.getElementById("channelFilter").value.toLowerCase();  
+const list=document.getElementById("channelList");list.replaceChildren();  
+const filtered=channels.filter(c=>(c.name+" "+c.desc+" "+c.query).toLowerCase().includes(q));  
+document.getElementById("channelCount").textContent=filtered.length+" shown / "+channels.length+" total";  
+filtered.forEach(c=>{  
+const card=document.createElement("div");card.className="card";  
+const title=document.createElement("h3");title.textContent="▶️ "+c.name;  
+const desc=document.createElement("p");desc.textContent=c.desc;  
+const actions=document.createElement("div");actions.className="card-actions";  
+const open=document.createElement("button");open.className="secondary";open.textContent="Open Channel / Search ↗";open.onclick=()=>openLink(channelUrl(c));  
+const fav=document.createElement("button");fav.className="fav";fav.textContent="⭐";fav.onclick=()=>toggleFavorite("youtube",c.name,channelUrl(c));  
+actions.append(open,fav);  
+if(c.custom){  
+const remove=document.createElement("button");remove.className="fav";remove.textContent="Remove";  
+remove.onclick=()=>removeChannel(c.name);actions.append(remove);  
+}  
+card.append(title,desc,actions);list.append(card);  
+});  
+document.getElementById("totalChannels").textContent=channels.length;  
+}  
+function addChannel(){  
+const name=document.getElementById("newChannelName").value.trim();  
+const url=document.getElementById("newChannelUrl").value.trim();  
+const desc=document.getElementById("newChannelDesc").value.trim();  
+if(!name){alert("Enter channel name.");return}  
+if(url&&!safeUrl(url)){alert("Enter a valid channel URL.");return}  
+if(channels.some(c=>c.name.toLowerCase()===name.toLowerCase())){alert("Channel already exists.");return}  
+channels.push({name,query:name,desc:desc||"Educational channel",url,custom:true});  
+save("orbitChannels",channels);  
+["newChannelName","newChannelUrl","newChannelDesc"].forEach(id=>document.getElementById(id).value="");  
+renderChannels();  
+}  
+function removeChannel(name){  
+if(!confirm("Remove "+name+"?"))return;  
+channels=channels.filter(c=>!(c.name===name&&c.custom));  
+save("orbitChannels",channels);renderChannels();  
+}  
+  
+function setMode(value,button){  
+mode=value;  
+document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));  
+button.classList.add("active");  
+}  
+function addHistory(q){  
+history=history.filter(x=>x!==q);  
+history.unshift(q);history=history.slice(0,10);  
+save("orbitHistory",history);renderHistory();  
+}  
+function smartSearch(){  
+const query=document.getElementById("query").value.trim();  
+const cls=document.getElementById("className").value;  
+const subject=document.getElementById("subject").value;  
+if(!query){alert("Enter a lesson or question.");return}  
+const full=[cls,subject,query].filter(Boolean).join(" ");  
+const encoded=encodeURIComponent(full);  
+const results=document.getElementById("searchResults");  
+results.replaceChildren();addHistory(full);  
+const heading=document.createElement("h3");  
+heading.style.marginTop="18px";  
+heading.textContent="Search results for: "+full;  
+results.append(heading);  
+function addResult(title,description,url){  
+const div=document.createElement("div");div.className="result";  
+const h=document.createElement("h3");h.textContent=title;  
+const p=document.createElement("p");p.textContent=description;  
+const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Open Search Results →";  
+div.append(h,p,a);results.append(div);  
+}  
+if(mode==="all"||mode==="web"){  
+addResult("Google - Educational Websites","Search the topic across the web.","https://www.google.com/search?q="+encoded+" education study");  
+websites.forEach(w=>{  
+let domain="";  
+try{domain=new URL(w.url).hostname.replace(/^www\./,"")}catch(e){return}  
+if(domain.includes("youtube.com"))return;  
+addResult(w.name+" - Search Inside Website","Search "+full+" inside "+w.name,"https://www.google.com/search?q="+encodeURIComponent("site:"+domain+" "+full));  
+});  
+}  
+if(mode==="all"||mode==="youtube"){  
+addResult("YouTube - All Videos","Find videos about "+full,"https://www.youtube.com/results?search_query="+encoded);  
+channels.forEach(c=>addResult(c.name+" - Lesson Search","Find "+full+" lessons from "+c.name,"https://www.youtube.com/results?search_query="+encodeURIComponent(c.query+" "+full)));  
+}  
+}  
+function quickSearch(q){  
+document.getElementById("query").value=q;  
+document.getElementById("smart").scrollIntoView();  
+smartSearch();  
+}  
+function openGoogleWeb(){  
+const q=document.getElementById("webFilter").value.trim();  
+openLink("https://www.google.com/search?q="+encodeURIComponent(q||"Tamil Nadu educational websites"));  
+}  
+function openYouTube(){  
+const q=document.getElementById("channelFilter").value.trim();  
+openLink("https://www.youtube.com/results?search_query="+encodeURIComponent(q||"Tamil educational channels"));  
+}  
+  
+function toggleFavorite(type,name,url){  
+const exists=favorites.some(f=>f.type===type&&f.name===name);  
+if(exists)favorites=favorites.filter(f=>!(f.type===type&&f.name===name));  
+else favorites.push({type,name,url});  
+save("orbitFavorites",favorites);renderFavorites();  
+}  
+function renderFavorites(){  
+const list=document.getElementById("favoriteList");list.replaceChildren();  
+if(!favorites.length){  
+const p=document.createElement("p");p.className="empty";p.textContent="No favourites yet. Tap ⭐ on a website or channel.";list.append(p);return;  
+}  
+favorites.forEach(f=>{  
+const card=document.createElement("div");card.className="card";  
+const title=document.createElement("h3");title.textContent="⭐ "+f.name;  
+const p=document.createElement("p");p.textContent=f.type==="web"?"Website":"YouTube";  
+const open=document.createElement("button");open.className="secondary";open.textContent="Open ↗";open.onclick=()=>openLink(f.url);  
+const remove=document.createElement("button");remove.className="fav";remove.textContent="Remove";remove.onclick=()=>toggleFavorite(f.type,f.name,f.url);  
+card.append(title,p,open,remove);list.append(card);  
+});  
+}  
+function renderHistory(){  
+const list=document.getElementById("historyList");list.replaceChildren();  
+if(!history.length){  
+const p=document.createElement("p");p.className="empty";p.textContent="No searches yet.";list.append(p);return;  
+}  
+history.forEach(q=>{  
+const button=document.createElement("button");button.className="secondary";button.style.margin="5px";  
+button.textContent="🔍 "+q;button.onclick=()=>quickSearch(q);list.append(button);  
+});  
+}  
+function clearHistory(){history=[];save("orbitHistory",history);renderHistory()}  
+  
+document.getElementById("uploadForm").addEventListener("submit",function(e){  
+e.preventDefault();  
+const file=document.getElementById("uploadFile").files[0];  
+if(file&&(file.type!=="application/pdf"||!file.name.toLowerCase().endsWith(".pdf"))){alert("PDF files only.");return}  
+if(file&&file.size>5*1024*1024){alert("PDF must be smaller than 5 MB.");return}  
+const submission={  
+name:document.getElementById("userName").value.trim(),  
+category:document.getElementById("uploadCategory").value,  
+title:document.getElementById("uploadTitle").value.trim(),  
+description:document.getElementById("uploadDescription").value.trim(),  
+fileName:file?file.name:"",status:"Pending"  
+};  
+let pending=loadData("orbitPending",[]);  
+pending.push(submission);save("orbitPending",pending);  
+document.getElementById("uploadMessage").textContent="Your demo submission is saved in this browser. It is not published yet.";  
+this.reset();  
+});  
+  
+function askAI(){  
+const input=document.getElementById("aiInput");  
+const question=input.value.trim();if(!question)return;  
+const messages=document.getElementById("chatMessages");  
+const user=document.createElement("div");user.className="message user";user.textContent=question;  
+const bot=document.createElement("div");bot.className="message";  
+bot.textContent="ORBIT AI is not connected yet. A secure backend and AI API are required for real answers.";  
+messages.append(user,bot);messages.scrollTop=messages.scrollHeight;input.value="";  
+}  
+document.getElementById("aiInput").addEventListener("keydown",e=>{if(e.key==="Enter")askAI()});  
+document.getElementById("query").addEventListener("keydown",e=>{if(e.key==="Enter")smartSearch()});  
+  
+renderWebsites();  
+renderChannels();  
+renderFavorites();  
+renderHistory();  
+</script>  </body>  
+</html>  
