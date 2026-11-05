@@ -1,625 +1,188 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#050b1c">
-
-<!-- GOOGLE SEO -->
-<title>Learn with Orbit | Free Study Materials & Learning Hub</title>
-<meta name="description" content="Learn with Orbit is a free educational platform for students. Find Tamil Nadu school study materials, 12th question papers, mock exams, notes, educational websites and YouTube learning channels.">
-<meta name="keywords" content="Learn with Orbit, Orbit Study Hub, free study materials, Tamil Nadu education, 12th study materials, question papers, mock exams, online learning">
-<meta name="robots" content="index, follow">
-<meta name="author" content="Learn with Orbit">
-<meta name="application-name" content="Learn with Orbit">
-
-<!-- CANONICAL URL -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b14">
+<title>Learn with Orbit | Your Smart Study Space</title>
+<meta name="description" content="Learn with Orbit brings study notes, flashcards, practice tests, progress tracking and learning resources together in one student-friendly space.">
 <link rel="canonical" href="https://learn-with-orbit.vercel.app/">
-
-<!-- OPEN GRAPH -->
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Learn with Orbit">
-<meta property="og:title" content="Learn with Orbit | Smart Learning Hub">
-<meta property="og:description" content="Learn, Explore and Grow. Discover free educational resources, study materials, question papers and learning websites.">
-<meta property="og:url" content="https://learn-with-orbit.vercel.app/">
-<meta property="og:image" content="https://learn-with-orbit.vercel.app/">
-
-<!-- TWITTER -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Learn with Orbit">
-<meta name="twitter:description" content="Your free smart learning hub for students.">
-
-<!-- GOOGLE STRUCTURED DATA -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Learn with Orbit",
-  "alternateName": "ORBIT Smart Learning Hub",
-  "url": "https://learn-with-orbit.vercel.app/",
-  "description": "A free educational learning hub for students.",
-  "inLanguage": "en"
-}
-</script>
-
+<meta property="og:title" content="Learn with Orbit | Your Smart Study Space">
+<meta property="og:description" content="Study smarter with notes, flashcards, practice tests and learning resources.">
 <style>
-:root {
---bg:#050b1c;
---panel:#0c1930;
---line:#1b3152;
---text:#f4f7ff;
---muted:#a5b6d0;
---blue:#168cff;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:Arial,sans-serif;line-height:1.6}
-a{text-decoration:none;color:inherit}
-button{cursor:pointer;font:inherit;border:0}
-header{position:sticky;top:0;z-index:100;background:#050b1cf5;border-bottom:1px solid var(--line);padding:13px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px}
-.logo{font-size:25px;font-weight:900;letter-spacing:3px;color:white}
-.logo small{display:block;font-size:10px;letter-spacing:2px;color:#65a9e9}
-nav{display:flex;gap:16px;overflow-x:auto}
-nav a{font-size:13px;white-space:nowrap;color:#c4d4ef}
-nav a:hover{color:#36c5ff}
-.header-btn,.primary{background:linear-gradient(120deg,#293dff,#168cff);color:white;padding:11px 17px;border-radius:8px;font-size:13px;white-space:nowrap}
-.orbit-home{background:radial-gradient(circle at 75% 40%,#102d69 0%,transparent 35%),linear-gradient(120deg,#030817,#07132b 60%,#030817);padding:55px 7% 30px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:20px}
-.home-content h1{font-size:clamp(32px,5vw,54px);line-height:1.15;margin:22px 0 15px}
-.home-content h1 span{color:#32a8ff}
-.blue-text{background:linear-gradient(90deg,#26baff,#626aff);background-clip:text;-webkit-background-clip:text;color:transparent}
-.home-content p{color:#b4c2dc;max-width:430px;font-size:13px}
-.home-tag{display:inline-block;color:#57c9ff;background:#0c2946;border:1px solid #164d7b;padding:7px 13px;border-radius:30px;font-size:11px}
-.home-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.home-primary,.home-secondary{padding:12px 16px;border-radius:8px;font-size:12px;display:inline-block}
-.home-primary{background:linear-gradient(120deg,#293dff,#168cff)}
-.home-secondary{border:1px solid #355078;color:#e1eaff}
-.home-visual{min-height:260px;display:flex;align-items:center;justify-content:center;position:relative}
-.book{font-size:150px;filter:drop-shadow(0 0 18px #328dff);animation:float 3s infinite}
-@keyframes float{50%{transform:translateY(-13px)}}
-.home-features{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px}
-.home-feature,.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
-.home-feature h3,.card h3{font-size:15px;margin:7px 0}
-.home-feature p,.card p{font-size:12px;color:var(--muted)}
-.feature-icon,.card-icon{font-size:25px}
-.home-stats{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;background:#0b1a32;border:1px solid var(--line);border-radius:12px;padding:18px}
-.home-stat{text-align:center}
-.home-stat strong{display:block;color:#55baff}
-.home-stat small{color:var(--muted)}
-.container{max-width:1200px;margin:auto;padding:35px 5%}
-.section{margin-bottom:48px;scroll-margin-top:100px}
-.heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px}
-.heading h2{font-size:22px}
-.heading span{font-size:12px;color:var(--muted)}
-.searchbox,.panel,.chat{background:var(--panel);padding:22px;border:1px solid var(--line);border-radius:15px}
-.empty{color:var(--muted);font-size:13px;padding:8px 0}
-.searchrow{display:flex;gap:9px;margin-top:12px}
-input,select,textarea{width:100%;padding:13px;background:#081429;border:1px solid #29405f;border-radius:9px;color:white;font:inherit;outline:none}
-input:focus,select:focus,textarea:focus{border-color:#3b9dff}
-.filters{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
-.filters button,.secondary,.fav{background:#142847;color:#cce4ff;padding:10px 14px;border-radius:8px}
-.filters button.active{background:#168cff}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
-.card{transition:.2s;overflow-wrap:anywhere}
-.card:hover{transform:translateY(-3px);border-color:#2866a4}
-.card-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
-.badge{display:inline-block;background:#122e4c;color:#71caff;border-radius:20px;padding:4px 9px;font-size:11px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
-.stat{text-align:center;background:#10213b;padding:17px;border-radius:12px}
-.stat strong{display:block;color:#55baff;font-size:20px}
-.stat small{color:var(--muted)}
-.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.formgroup{margin-bottom:13px}
-.formgroup label{display:block;font-size:12px;margin-bottom:6px;color:#c4d4e9}
-.full{width:100%}
-.notice{background:#102b49;padding:14px;border-radius:9px;color:#9bc8ed;font-size:12px;margin-top:12px}
-.result{padding:15px;background:#0b1a30;border:1px solid var(--line);border-radius:10px;margin-top:10px}
-.result h3{font-size:14px}
-.result p{font-size:12px;color:var(--muted)}
-.result a{color:#64b9ff;font-size:13px;font-weight:bold}
-.chatmessages{max-height:300px;overflow:auto;margin:15px 0}
-.message{background:#142b49;padding:12px;border-radius:10px;margin:8px 0;font-size:13px}
-.message.user{background:#17395a;text-align:right}
-footer{text-align:center;padding:35px;background:#08152a;color:#9eb2cf}
-footer strong{font-size:23px;letter-spacing:3px;color:#55baff}
-@media(max-width:750px){
-header{flex-direction:column;align-items:flex-start}
-nav{width:100%;padding-bottom:5px}
-.header-btn{display:none}
-.orbit-home{grid-template-columns:1fr;text-align:center;padding:45px 18px 25px}
-.home-content p{margin:auto}
-.home-buttons{justify-content:center}
-.home-visual{min-height:200px}
-.home-features{grid-template-columns:repeat(2,1fr)}
-.home-stats,.stats{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:520px){
-.container{padding:25px 14px}
-.searchrow{flex-direction:column}
-.searchrow button{width:100%}
-.formgrid{grid-template-columns:1fr}
-.heading h2{font-size:18px}
-}
+:root{--bg:#090b14;--panel:#111522;--panel2:#171d2d;--line:#252d40;--text:#f4f6fc;--muted:#9aa5bb;--accent:#8b5cf6;--accent2:#5b8cff;--good:#35c98b;--gold:#f2b95f;--shadow:0 18px 50px #0004}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.55 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+.app{min-height:100vh;display:grid;grid-template-columns:238px minmax(0,1fr)}
+.sidebar{height:100vh;position:sticky;top:0;background:#0d111d;border-right:1px solid var(--line);padding:21px 14px;display:flex;flex-direction:column;z-index:5}
+.brand{display:flex;align-items:center;gap:10px;padding:2px 10px 24px;font-weight:850;font-size:19px}.brandmark{width:35px;height:35px;border-radius:11px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-size:19px}.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:2px;font-weight:600}
+.navlabel{color:#68748d;font-size:10px;font-weight:800;letter-spacing:1.3px;padding:13px 12px 7px}.nav{display:grid;gap:4px}.nav button{border:0;color:#aeb8cb;background:transparent;text-align:left;padding:10px 12px;border-radius:10px;display:flex;align-items:center;gap:12px;font-weight:600}.nav button:hover,.nav button.active{background:#241d3e;color:#cbbaff}.nav .ico{width:19px;text-align:center;font-size:16px}.sidebottom{margin-top:auto;background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:12px;color:var(--muted);font-size:12px}
+main{min-width:0}.topbar{height:68px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,3vw,38px);gap:14px;background:#090b14eF;position:sticky;top:0;z-index:4;backdrop-filter:blur(12px)}
+.topsearch{max-width:520px;flex:1;position:relative}.topsearch input{width:100%;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:11px 14px 11px 39px;border-radius:11px;outline:none}.topsearch span{position:absolute;left:13px;top:8px;color:var(--muted);font-size:17px}.topactions{display:flex;align-items:center;gap:9px}.iconbtn{border:1px solid var(--line);background:var(--panel);color:var(--text);width:38px;height:38px;border-radius:11px}.avatar{width:35px;height:35px;border-radius:50%;display:grid;place-items:center;background:#34265d;color:#e4d9ff;font-weight:800}
+.content{max-width:1440px;margin:auto;padding:28px clamp(16px,3vw,38px) 70px}.welcome{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:5px 0 22px}.eyebrow{color:#b9a5ff;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;font-weight:800}.welcome h1{font-size:clamp(25px,3vw,34px);line-height:1.2;margin:5px 0}.muted{color:var(--muted)}.btn{border:0;border-radius:10px;padding:11px 15px;background:linear-gradient(120deg,var(--accent),var(--accent2));color:white;font-weight:750}.btn.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text)}.btn.small{padding:8px 11px;font-size:12px}
+.hero{background:radial-gradient(circle at 85% 20%,#6246a644,transparent 32%),linear-gradient(115deg,#19172e,#111b32);border:1px solid #393254;border-radius:18px;padding:24px;display:grid;grid-template-columns:1.4fr .6fr;gap:20px;align-items:center;box-shadow:var(--shadow)}
+.hero h2{font-size:clamp(22px,3vw,31px);line-height:1.2;margin:8px 0}.hero p{max-width:570px;color:#b7bfd2;margin:0 0 17px}.hero-actions{display:flex;flex-wrap:wrap;gap:9px}.hero-art{font-size:90px;text-align:center;filter:drop-shadow(0 10px 25px #7d5bff55)}
+.section{margin-top:30px;scroll-margin-top:85px}.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:13px}.sectionhead h2{font-size:18px;margin:0}.sectionhead a,.textbtn{color:#bba8ff;font-size:12px;border:0;background:none}
+.quickgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}.quick{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 13px;min-height:112px;text-align:left;color:var(--text);transition:.18s}.quick:hover,.tile:hover{transform:translateY(-3px);border-color:#6650a6}.quick .qico{font-size:23px;display:block;margin-bottom:8px}.quick b{display:block;font-size:13px}.quick small{color:var(--muted);font-size:11px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.tile,.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}.tile{transition:.18s}.tiletop{display:flex;justify-content:space-between;align-items:center}.tileicon{width:37px;height:37px;border-radius:11px;background:#282044;display:grid;place-items:center;font-size:19px}.tag{font-size:10px;color:#cbbaff;background:#2a2145;padding:4px 8px;border-radius:20px}.tile h3{font-size:14px;margin:12px 0 4px}.tile p{font-size:12px;color:var(--muted);margin:0 0 12px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}.filters select,.field,textarea{background:#0d1220;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:10px;outline:none}.filters select{min-width:130px}
+.resourcegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.resource{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}.resource h3{font-size:13px;margin:0 0 5px}.resource p{font-size:11px;color:var(--muted);margin:0 0 10px}.resource button{margin-right:6px}
+.progressrow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.metric{background:var(--panel);border:1px solid var(--line);padding:15px;border-radius:13px}.metric strong{display:block;font-size:23px;margin:5px 0}.bar{height:7px;background:#272d3d;border-radius:20px;overflow:hidden;margin-top:9px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:20px}
+.two{display:grid;grid-template-columns:1.25fr .75fr;gap:13px}.task{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.task:last-child{border:0}.task input{accent-color:var(--accent);width:17px;height:17px}.task span{flex:1}
+textarea{width:100%;min-height:90px;resize:vertical}.field{width:100%;margin:5px 0 10px}.stack{display:grid;gap:8px}.flashcard{min-height:130px;display:grid;place-items:center;text-align:center;background:linear-gradient(135deg,#201a37,#14233d);border:1px solid #40335f;border-radius:14px;padding:20px;font-size:18px;font-weight:700}.answer{font-size:14px;color:#c6b7ff;margin-top:8px}
+footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:var(--muted);font-size:12px}
+.mobilebar{display:none}
+.modal{position:fixed;inset:0;background:#0009;display:none;place-items:center;padding:18px;z-index:20}.modal.show{display:grid}.modalbox{width:min(520px,100%);background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}.modalhead{display:flex;justify-content:space-between;align-items:center}.close{background:transparent;border:0;color:var(--muted);font-size:22px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#25203b;color:white;padding:10px 15px;border:1px solid #514174;border-radius:10px;display:none;z-index:30}
+@media(max-width:1050px){.quickgrid{grid-template-columns:repeat(3,1fr)}.resourcegrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.app{display:block}.sidebar{display:none}.topbar{height:60px}.content{padding-top:20px}.welcome{align-items:flex-start}.welcome .btn{display:none}.hero{grid-template-columns:1fr;padding:19px}.hero-art{display:none}.grid3{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.mobilebar{position:fixed;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(5,1fr);background:#0e1220f5;border-top:1px solid var(--line);padding:7px 4px calc(7px + env(safe-area-inset-bottom));z-index:10;backdrop-filter:blur(12px)}.mobilebar button{background:none;border:0;color:var(--muted);font-size:10px;display:grid;gap:2px;justify-items:center}.mobilebar button span{font-size:18px}.mobilebar button.active{color:#cbbaff}.content{padding-bottom:100px}}
+@media(max-width:480px){.quickgrid{grid-template-columns:repeat(2,1fr);gap:9px}.quick{min-height:100px;padding:12px}.grid3,.resourcegrid,.progressrow{grid-template-columns:1fr}.topsearch input{font-size:12px}.topactions{gap:5px}.section{margin-top:24px}.welcome h1{font-size:25px}}
 </style>
 </head>
-
 <body>
-
-<header>
-<a href="#home" class="logo"><span style="color:#168cff">✦</span> ORBIT
-<small>LEARN • EXPLORE • GROW</small></a>
-<nav>
-<a href="#home">Home</a>
-<a href="#smart">Search</a>
-<a href="#study">Study</a>
-<a href="#websites">Websites</a>
-<a href="#channels">YouTube</a>
-<a href="#favorites">Favourites</a>
-<a href="#upload">Upload</a>
-<a href="#ai">AI Tutor</a>
-</nav>
-<a href="#smart" class="header-btn">Study Now ↗</a>
+<div class="app">
+<aside class="sidebar">
+ <div class="brand"><div class="brandmark">✦</div><div>ORBIT<small>LEARN • EXPLORE • GROW</small></div></div>
+ <div class="navlabel">WORKSPACE</div>
+ <nav class="nav">
+  <button class="active" data-go="home"><span class="ico">⌂</span>Home</button>
+  <button data-go="library"><span class="ico">▤</span>My Library</button>
+  <button data-go="planner"><span class="ico">▦</span>Study Planner</button>
+  <button data-go="progress"><span class="ico">◔</span>My Progress</button>
+  <button data-go="community"><span class="ico">♧</span>Community</button>
+ </nav>
+ <div class="navlabel">LEARN</div>
+ <nav class="nav">
+  <button data-go="flashcards"><span class="ico">▣</span>Flashcards</button>
+  <button data-go="practice"><span class="ico">✓</span>Practice Tests</button>
+  <button data-go="resources"><span class="ico">◎</span>Resources</button>
+  <button data-go="ai"><span class="ico">✧</span>AI Study Helper</button>
+ </nav>
+ <div class="sidebottom">🌱 <b>Small steps, big progress.</b><br>Build a study habit one day at a time.</div>
+</aside>
+<main>
+<header class="topbar">
+ <div class="topsearch"><span>⌕</span><input id="globalSearch" placeholder="Search notes, subjects, resources..." aria-label="Search learning resources"></div>
+ <div class="topactions"><button class="iconbtn" id="themeBtn" title="Toggle theme">☼</button><button class="iconbtn" id="langBtn" title="Language">EN</button><div class="avatar">S</div></div>
 </header>
+<div class="content" id="home">
+ <div class="welcome"><div><div class="eyebrow">YOUR PERSONAL LEARNING SPACE</div><h1>Welcome to Learn with Orbit 👋</h1><div class="muted">Everything you need to study, practise and grow — in one simple place.</div></div><button class="btn" onclick="openModal('goalModal')">＋ Set study goal</button></div>
+ <section class="hero">
+  <div><div class="eyebrow">STUDY SMARTER EVERY DAY</div><h2>Make learning simple.<br><span style="color:#bba8ff">Make progress visible.</span></h2><p>Find your notes, practise important topics, plan your study time and keep all your learning resources together.</p><div class="hero-actions"><button class="btn" onclick="go('library')">Explore study materials →</button><button class="btn secondary" onclick="go('practice')">Start practising</button></div></div>
+  <div class="hero-art" aria-hidden="true">📚</div>
+ </section>
 
-<section class="orbit-home" id="home">
-<div class="home-content">
-<span class="home-tag">✦ 100% FREE FOR STUDENTS</span>
-<h1>Learn with Orbit 🚀<br>
-All Your Study<br>Resources in <span>One</span><br>
-<span class="blue-text">Smart Hub</span></h1>
-<p>Access mock exams, reference sheets, expected papers and more free resources to help you study smarter and achieve better results.</p>
-<div class="home-buttons">
-<a href="#smart" class="home-primary">Explore Resources ▣</a>
-<a href="#study" class="home-secondary">View Study Materials</a>
-</div>
-</div>
+ <section class="section">
+  <div class="sectionhead"><h2>Quick access</h2><span class="muted">One tap to get started</span></div>
+  <div class="quickgrid">
+   <button class="quick" onclick="go('library')"><span class="qico">📘</span><b>Study Notes</b><small>Read and save notes</small></button>
+   <button class="quick" onclick="go('practice')"><span class="qico">📝</span><b>Practice Tests</b><small>Check your learning</small></button>
+   <button class="quick" onclick="go('flashcards')"><span class="qico">🗂️</span><b>Flashcards</b><small>Revise key concepts</small></button>
+   <button class="quick" onclick="go('planner')"><span class="qico">🗓️</span><b>Study Planner</b><small>Organise your day</small></button>
+   <button class="quick" onclick="go('resources')"><span class="qico">🌐</span><b>Web Resources</b><small>Trusted learning links</small></button>
+   <button class="quick" onclick="go('ai')"><span class="qico">🤖</span><b>AI Study Helper</b><small>Study support demo</small></button>
+  </div>
+ </section>
 
-<div class="home-visual">
-<div class="book">📖</div>
-</div>
+ <section class="section" id="progress">
+  <div class="sectionhead"><h2>Your learning snapshot</h2><span class="muted">Saved on this device</span></div>
+  <div class="progressrow">
+   <div class="metric"><span class="muted">Study tasks completed</span><strong id="doneCount">0</strong><div class="bar"><i id="taskBar" style="width:0%"></i></div></div>
+   <div class="metric"><span class="muted">Saved resources</span><strong id="savedCount">0</strong><small class="muted">Your personal library</small></div>
+   <div class="metric"><span class="muted">Practice score</span><strong id="scoreCount">—</strong><small class="muted">Complete a practice quiz</small></div>
+  </div>
+ </section>
 
-<div class="home-features">
-<div class="home-feature"><div class="feature-icon">📋</div><h3>Mock Exams</h3><p>Practice with mock exams.</p></div>
-<div class="home-feature"><div class="feature-icon">📗</div><h3>Reference Sheets</h3><p>Quick revision materials.</p></div>
-<div class="home-feature"><div class="feature-icon">🎯</div><h3>Expected Papers</h3><p>Important exam topics.</p></div>
-<div class="home-feature"><div class="feature-icon">☏</div><h3>WhatsApp Updates</h3><p>Stay updated.</p></div>
-<div class="home-feature"><div class="feature-icon">🎁</div><h3>100% Free</h3><p>Free learning resources.</p></div>
-</div>
+ <section class="section" id="library">
+  <div class="sectionhead"><h2>Browse study materials</h2><button class="textbtn" onclick="go('resources')">All resources →</button></div>
+  <div class="filters"><select id="classFilter"><option value="">All classes</option><option>6th Standard</option><option>7th Standard</option><option>8th Standard</option><option>9th Standard</option><option>10th Standard</option><option>11th Standard</option><option>12th Standard</option><option>College</option></select><select id="subjectFilter"><option value="">All subjects</option><option>Mathematics</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>Computer Science</option><option>English</option><option>Tamil</option><option>DBMS</option></select><input class="field" style="max-width:220px;margin:0" id="materialSearch" placeholder="Filter materials..."></div>
+  <div class="resourcegrid" id="materialList"></div>
+ </section>
 
-<div class="home-stats">
-<div class="home-stat">⭐<strong>100%</strong><small>Free</small></div>
-<div class="home-stat">◷<strong>24/7</strong><small>Accessible</small></div>
-<div class="home-stat">👥<strong>Growing</strong><small>Community</small></div>
-<div class="home-stat">🛡️<strong>Learning</strong><small>Resources</small></div>
-</div>
-</section>
+ <section class="section" id="planner">
+  <div class="sectionhead"><h2>Today's study planner</h2><button class="textbtn" onclick="openModal('taskModal')">＋ Add task</button></div>
+  <div class="two"><div class="panel"><div id="taskList"></div></div><div class="panel"><div class="eyebrow">DAILY FOCUS</div><h2 style="font-size:27px;margin:6px 0" id="focusCount">0 / 0</h2><div class="muted">Tasks completed today</div><div class="bar"><i id="focusBar" style="width:0%"></i></div><p class="muted" style="font-size:12px;margin-top:15px">Tip: Break a big topic into small, manageable study sessions.</p></div></div>
+ </section>
 
-<main class="container">
+ <section class="section" id="flashcards">
+  <div class="sectionhead"><h2>Flashcard revision</h2><span class="muted">Tap reveal to check the answer</span></div>
+  <div class="panel"><div class="eyebrow" id="flashTopic">COMPUTER SCIENCE • BASICS</div><div class="flashcard"><div><div id="flashQuestion">What does CPU stand for?</div><div class="answer" id="flashAnswer" hidden>Central Processing Unit</div></div></div><div class="hero-actions" style="margin-top:12px"><button class="btn small" id="revealBtn">Reveal answer</button><button class="btn secondary small" id="nextFlash">Next card →</button></div></div>
+ </section>
 
-<section class="section" id="smart">
-<div class="heading"><h2>🔍 ORBIT Smart Study Search</h2></div>
-<div class="searchbox">
-<h3>What do you want to learn?</h3>
-<p class="empty">Example: 12th Maths Integration, DBMS Normalization</p>
-<div class="formgrid">
-<select id="className">
-<option value="">All Classes</option>
-<option>6th Standard</option><option>7th Standard</option>
-<option>8th Standard</option><option>9th Standard</option>
-<option>10th Standard</option><option>11th Standard</option>
-<option>12th Standard</option><option>College</option>
-</select>
-<select id="subject">
-<option value="">All Subjects</option>
-<option>Maths</option><option>Physics</option>
-<option>Chemistry</option><option>Biology</option>
-<option>Computer Science</option><option>Tamil</option>
-<option>English</option><option>Social Science</option>
-<option>Commerce</option><option>DBMS</option>
-</select>
-</div>
-<div class="searchrow">
-<input id="query" placeholder="Type your lesson or question...">
-<button class="primary" onclick="smartSearch()">Search</button>
-</div>
-<div class="filters">
-<button class="active" onclick="setMode('all',this)">All</button>
-<button onclick="setMode('web',this)">Websites</button>
-<button onclick="setMode('youtube',this)">YouTube</button>
-</div>
-<div id="searchResults"></div>
-</div>
-</section>
+ <section class="section" id="practice">
+  <div class="sectionhead"><h2>Quick practice test</h2><span class="muted">A short sample quiz</span></div>
+  <div class="panel"><div class="eyebrow" id="quizStep">QUESTION 1 OF 3</div><h3 id="quizQuestion">Which part is known as the brain of the computer?</h3><div class="stack" id="quizOptions"></div><p id="quizFeedback" class="muted" aria-live="polite"></p><button class="btn small" id="nextQuiz" style="display:none">Next question →</button></div>
+ </section>
 
-<section class="section" id="websites">
-<div class="heading"><h2>🌐 Educational Websites</h2><span id="webCount"></span></div>
-<div class="searchrow">
-<input id="webFilter" placeholder="Search website..." oninput="renderWebsites()">
-<button class="secondary" onclick="openGoogleWeb()">Search Web</button>
-</div>
-<div class="grid" id="websiteList" style="margin-top:16px"></div>
-<div class="panel" style="margin-top:18px">
-<h3>➕ Add Your Own Website</h3>
-<div class="formgrid" style="margin-top:12px">
-<input id="newWebName" placeholder="Website name">
-<input id="newWebUrl" placeholder="https://example.com">
-</div>
-<input id="newWebDesc" placeholder="Description" style="margin-top:10px">
-<button class="primary" style="margin-top:10px" onclick="addWebsite()">Add Website</button>
-</div>
-</section>
+ <section class="section" id="resources">
+  <div class="sectionhead"><h2>Useful learning resources</h2><span class="muted">External educational websites</span></div>
+  <div class="grid3" id="webResources"></div>
+ </section>
 
-<section class="section" id="channels">
-<div class="heading"><h2>▶️ YouTube Learning Channels</h2><span id="channelCount"></span></div>
-<div class="searchrow">
-<input id="channelFilter" placeholder="Search channel..." oninput="renderChannels()">
-<button class="secondary" onclick="openYouTube()">Search YouTube</button>
-</div>
-<div class="grid" id="channelList" style="margin-top:16px"></div>
-<div class="panel" style="margin-top:18px">
-<h3>➕ Add YouTube Channel</h3>
-<div class="formgrid" style="margin-top:12px">
-<input id="newChannelName" placeholder="Channel name">
-<input id="newChannelUrl" placeholder="Channel URL (optional)">
-</div>
-<input id="newChannelDesc" placeholder="Description" style="margin-top:10px">
-<button class="primary" style="margin-top:10px" onclick="addChannel()">Add Channel</button>
-</div>
-</section>
+ <section class="section" id="community">
+  <div class="sectionhead"><h2>Student learning corner</h2><span class="muted">Local demo discussion board</span></div>
+  <div class="two"><div class="panel"><h3 style="margin-top:0">Share a study question</h3><input class="field" id="postName" placeholder="Your first name (optional)"><textarea id="postText" placeholder="Ask a question or share a useful study tip..."></textarea><button class="btn small" id="postBtn">Post to this device</button></div><div class="panel"><h3 style="margin-top:0">Recent posts</h3><div id="posts"><p class="muted">No posts yet. Start a helpful discussion.</p></div></div></div>
+ </section>
 
-<section class="section" id="study">
-<div class="heading"><h2>📚 Study Categories</h2></div>
-<div class="grid">
-<div class="card"><div class="card-icon">📝</div><h3>Important Questions</h3><p>Exam preparation questions.</p><a href="#" onclick="quickSearch('important questions');return false">Explore →</a></div>
-<div class="card"><div class="card-icon">📄</div><h3>Question Papers</h3><p>Previous year and model papers.</p><a href="#" onclick="quickSearch('previous year question papers');return false">Explore →</a></div>
-<div class="card"><div class="card-icon">📖</div><h3>Study Notes</h3><p>Subject-wise study notes.</p><a href="#" onclick="quickSearch('study notes');return false">Explore →</a></div>
-<div class="card"><div class="card-icon">🎓</div><h3>College Materials</h3><p>College study materials.</p><a href="#" onclick="quickSearch('college study materials');return false">Explore →</a></div>
-<div class="card"><div class="card-icon">🧪</div><h3>Practical Materials</h3><p>Lab records and practical lessons.</p><a href="#" onclick="quickSearch('practical materials');return false">Explore →</a></div>
-<div class="card"><div class="card-icon">🎯</div><h3>Online Learning</h3><p>Explore online lessons.</p><a href="#channels">Explore →</a></div>
+ <section class="section" id="ai">
+  <div class="sectionhead"><h2>AI study helper</h2><span class="tag">Demo interface</span></div>
+  <div class="panel"><p class="muted">Use this area to prepare a question for your AI tutor. Real AI responses need a secure server connection; never place a private API key in this HTML file.</p><textarea id="aiQuestion" placeholder="Example: Explain SQL normalization with a simple example..."></textarea><button class="btn small" id="aiBtn" style="margin-top:9px">Prepare question</button><p id="aiReply" class="muted" aria-live="polite"></p></div>
+ </section>
+ <footer>✦ <b>LEARN WITH ORBIT</b><br>Learn • Explore • Grow<br>© 2026 Learn with Orbit</footer>
 </div>
-<div class="stats">
-<div class="stat"><strong id="totalWeb">0</strong><small>Websites</small></div>
-<div class="stat"><strong id="totalChannels">0</strong><small>Channels</small></div>
-<div class="stat"><strong>24/7</strong><small>Access</small></div>
-<div class="stat"><strong>Free</strong><small>Learning</small></div>
-</div>
-</section>
-
-<section class="section" id="favorites">
-<div class="heading"><h2>⭐ My Favourites</h2></div>
-<div class="grid" id="favoriteList"></div>
-</section>
-
-<section class="section">
-<div class="heading"><h2>🕘 Recent Searches</h2><button class="secondary" onclick="clearHistory()">Clear</button></div>
-<div id="historyList" class="panel"><p class="empty">No searches yet.</p></div>
-</section>
-
-<section class="section" id="upload">
-<div class="heading"><h2>📤 Share Study Materials</h2></div>
-<div class="panel">
-<form id="uploadForm">
-<div class="formgrid">
-<div class="formgroup"><label>Your Name</label><input id="userName" required maxlength="60"></div>
-<div class="formgroup"><label>Category</label>
-<select id="uploadCategory">
-<option>Important Questions</option><option>Question Paper</option><option>Study Notes</option><option>College Materials</option><option>Practical Materials</option>
-</select>
-</div>
-</div>
-<div class="formgroup"><label>Title</label><input id="uploadTitle" required maxlength="150"></div>
-<div class="formgroup"><label>Description</label><textarea id="uploadDescription" required maxlength="3000"></textarea></div>
-<div class="formgroup"><label>PDF (Optional, max 5 MB)</label><input id="uploadFile" type="file" accept=".pdf,application/pdf"></div>
-<button class="primary full" type="submit">Submit Resource</button>
-</form>
-<p class="notice" id="uploadMessage">Demo upload: submissions are stored only in this browser.</p>
-</div>
-</section>
-
-<section class="section" id="ai">
-<div class="heading"><h2>🤖 ORBIT AI Tutor</h2></div>
-<div class="chat">
-<span class="badge">AI Assistant Demo</span>
-<h3>Ask Your Study Questions</h3>
-<div class="chatmessages" id="chatMessages">
-<div class="message">Welcome to ORBIT! AI connection needs to be configured.</div>
-</div>
-<div class="searchrow">
-<input id="aiInput" placeholder="Ask your study question...">
-<button class="primary" onclick="askAI()">Send</button>
-</div>
-<p class="notice">Real AI answers require a secure backend and AI API.</p>
-</div>
-</section>
-
-<section class="section">
-<div class="heading"><h2>🌿 About Learn with Orbit</h2></div>
-<div class="panel">
-Learn with Orbit is a free learning platform designed to help students discover educational websites, videos, study materials and learning resources in one place.
-</div>
-</section>
-
 </main>
-
-<footer>
-<strong>LEARN WITH ORBIT</strong>
-<p>Learn • Explore • Grow</p>
-<p>One Search. Unlimited Knowledge.</p>
-<p>© 2026 Learn with Orbit</p>
-<a href="https://learn-with-orbit.vercel.app/">learn-with-orbit.vercel.app</a>
-</footer>
-
+</div>
+<nav class="mobilebar" aria-label="Quick navigation">
+ <button class="active" data-go="home"><span>⌂</span>Home</button><button data-go="library"><span>📘</span>Learn</button><button data-go="planner"><span>🗓️</span>Planner</button><button data-go="practice"><span>✓</span>Practice</button><button data-go="resources"><span>🌐</span>More</button>
+</nav>
+<div class="modal" id="taskModal"><div class="modalbox"><div class="modalhead"><h3>Add a study task</h3><button class="close" onclick="closeModal('taskModal')">×</button></div><input class="field" id="taskInput" placeholder="e.g. Revise DBMS normalization"><button class="btn" id="saveTask">Save task</button></div></div>
+<div class="modal" id="goalModal"><div class="modalbox"><div class="modalhead"><h3>Set your study goal</h3><button class="close" onclick="closeModal('goalModal')">×</button></div><p class="muted">Choose a realistic daily study target.</p><select class="field" id="goalSelect"><option value="30">30 minutes</option><option value="60" selected>1 hour</option><option value="90">1.5 hours</option><option value="120">2 hours</option></select><button class="btn" id="saveGoal">Save goal</button></div></div>
+<div class="toast" id="toast" role="status"></div>
 <script>
-const defaultWebsites=[
-{name:"Padasalai",url:"https://www.padasalai.net/",desc:"Tamil Nadu school materials",type:"Tamil Nadu"},
-{name:"DIKSHA",url:"https://diksha.gov.in/",desc:"Digital education resources",type:"Official"},
-{name:"NCERT",url:"https://ncert.nic.in/",desc:"Textbooks and education resources",type:"Official"},
-{name:"SWAYAM",url:"https://swayam.gov.in/",desc:"Free online courses",type:"Official"},
-{name:"ePathshala",url:"https://epathshala.nic.in/",desc:"Digital textbooks",type:"Official"},
-{name:"Tamil Nadu Textbooks",url:"https://textbookcorp.tn.gov.in/",desc:"Tamil Nadu textbooks",type:"Official"},
-{name:"TN SCERT",url:"https://tnscert.org/",desc:"Educational resources",type:"Official"},
-{name:"Khan Academy",url:"https://www.khanacademy.org/",desc:"Maths and science",type:"International"},
-{name:"NPTEL",url:"https://nptel.ac.in/",desc:"College courses",type:"College"},
-{name:"NDLI",url:"https://ndl.iitkgp.ac.in/",desc:"National Digital Library",type:"India"},
-{name:"GeeksforGeeks",url:"https://www.geeksforgeeks.org/",desc:"Programming",type:"Technology"},
-{name:"W3Schools",url:"https://www.w3schools.com/",desc:"Web development",type:"Technology"},
-{name:"MDN Web Docs",url:"https://developer.mozilla.org/",desc:"Web development",type:"Technology"},
-{name:"PhET Simulations",url:"https://phet.colorado.edu/",desc:"Interactive science",type:"International"},
-{name:"Coursera",url:"https://www.coursera.org/",desc:"Online courses",type:"International"}
+const $=id=>document.getElementById(id);
+const read=(k,d)=>{try{const x=JSON.parse(localStorage.getItem(k));return x??d}catch{return d}};
+const write=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{notify("Storage is full on this device.")}};
+let tasks=read("orbitTasks",[{text:"Review today's class notes",done:false},{text:"Practise 5 important questions",done:false},{text:"Revise one difficult topic",done:false}]);
+let saved=read("orbitSaved",[]),posts=read("orbitPosts",[]),score=read("orbitScore",null);
+const materials=[
+ {title:"12th Mathematics – Revision Notes",cls:"12th Standard",sub:"Mathematics",desc:"Key concepts and revision topics.",url:"https://www.google.com/search?q=Tamil+Nadu+12th+maths+revision+notes"},
+ {title:"12th Computer Science – Study Notes",cls:"12th Standard",sub:"Computer Science",desc:"Programming, DBMS and theory resources.",url:"https://www.google.com/search?q=Tamil+Nadu+12th+computer+science+notes"},
+ {title:"Physics – Important Questions",cls:"12th Standard",sub:"Physics",desc:"Practice questions and explanations.",url:"https://www.google.com/search?q=12th+physics+important+questions+Tamil+Nadu"},
+ {title:"Chemistry – Chapter Resources",cls:"12th Standard",sub:"Chemistry",desc:"Chapter-wise study resources.",url:"https://www.google.com/search?q=12th+chemistry+study+materials"},
+ {title:"Biology – Learning Materials",cls:"12th Standard",sub:"Biology",desc:"Diagrams, notes and revision topics.",url:"https://www.google.com/search?q=12th+biology+study+materials"},
+ {title:"DBMS – SQL and Normalization",cls:"College",sub:"DBMS",desc:"Database concepts, SQL and examples.",url:"https://www.google.com/search?q=DBMS+SQL+normalization+notes"},
+ {title:"English – Grammar Practice",cls:"12th Standard",sub:"English",desc:"Grammar, writing and comprehension.",url:"https://www.google.com/search?q=12th+English+grammar+Tamil+Nadu"},
+ {title:"Tamil – Study Resources",cls:"12th Standard",sub:"Tamil",desc:"Lessons, summaries and question practice.",url:"https://www.google.com/search?q=12th+Tamil+study+materials"}
 ];
-
-const defaultChannels=[
-{name:"Ram Maths",query:"Ram Maths Tamil",desc:"Maths lessons"},
-{name:"Muruga MP",query:"Muruga MP Tamil education",desc:"Tamil education"},
-{name:"Khan Academy",query:"Khan Academy",desc:"Maths and science"},
-{name:"Physics Wallah",query:"Physics Wallah",desc:"Science education"},
-{name:"Unacademy",query:"Unacademy",desc:"Educational lessons"},
-{name:"Kalvi TV",query:"Kalvi TV Tamil Nadu",desc:"School lessons"},
-{name:"Tutor Joes",query:"Tutor Joes Tamil",desc:"Computer science"},
-{name:"Error Makes Clever",query:"Error Makes Clever Tamil",desc:"Computer science"},
-{name:"freeCodeCamp",query:"freeCodeCamp",desc:"Programming"},
-{name:"CodeWithHarry",query:"CodeWithHarry",desc:"Coding lessons"},
-{name:"Apna College",query:"Apna College",desc:"Programming"},
-{name:"Vedantu",query:"Vedantu",desc:"School learning"}
-];
-
-function loadData(key,fallback){
-try{
-const d=JSON.parse(localStorage.getItem(key));
-return Array.isArray(d)?d:fallback;
-}catch(e){return fallback}
-}
-function save(key,data){
-try{localStorage.setItem(key,JSON.stringify(data))}
-catch(e){alert("Browser storage is full.")}
-}
-
-let websites=loadData("orbitWebsites",defaultWebsites);
-let channels=loadData("orbitChannels",defaultChannels);
-let favorites=loadData("orbitFavorites",[]);
-let history=loadData("orbitHistory",[]);
-let mode="all";
-
-function safeUrl(url){
-try{
-const u=new URL(url);
-return ["https:","http:"].includes(u.protocol)?u.href:null;
-}catch(e){return null}
-}
-function openLink(url){
-const valid=safeUrl(url);
-if(valid)window.open(valid,"_blank","noopener,noreferrer");
-else alert("Please check the URL.");
-}
-
-function renderWebsites(){
-const q=document.getElementById("webFilter").value.toLowerCase();
-const list=document.getElementById("websiteList");
-list.replaceChildren();
-const filtered=websites.filter(w=>(w.name+" "+w.desc+" "+w.type).toLowerCase().includes(q));
-document.getElementById("webCount").textContent=filtered.length+" shown / "+websites.length+" total";
-filtered.forEach(w=>{
-const card=document.createElement("div");card.className="card";
-const title=document.createElement("h3");title.textContent=w.name;
-const desc=document.createElement("p");desc.textContent=w.desc;
-const badge=document.createElement("span");badge.className="badge";badge.textContent=w.type||"Custom";
-const actions=document.createElement("div");actions.className="card-actions";
-const open=document.createElement("button");open.className="secondary";open.textContent="Visit ↗";open.onclick=()=>openLink(w.url);
-const fav=document.createElement("button");fav.className="fav";fav.textContent="⭐";fav.onclick=()=>toggleFavorite("web",w.name,w.url);
-actions.append(open,fav);
-if(w.custom){
-const remove=document.createElement("button");remove.className="fav";remove.textContent="Remove";
-remove.onclick=()=>removeWebsite(w.name);actions.append(remove);
-}
-card.append(title,desc,badge,actions);list.append(card);
-});
-document.getElementById("totalWeb").textContent=websites.length;
-}
-
-function addWebsite(){
-const name=document.getElementById("newWebName").value.trim();
-const url=document.getElementById("newWebUrl").value.trim();
-const desc=document.getElementById("newWebDesc").value.trim();
-if(!name||!safeUrl(url)){alert("Enter a name and valid URL.");return}
-if(websites.some(w=>w.name.toLowerCase()===name.toLowerCase())){alert("Website already exists.");return}
-websites.push({name,url,desc:desc||"Custom website",type:"Custom",custom:true});
-save("orbitWebsites",websites);
-["newWebName","newWebUrl","newWebDesc"].forEach(id=>document.getElementById(id).value="");
-renderWebsites();
-}
-function removeWebsite(name){
-if(!confirm("Remove "+name+"?"))return;
-websites=websites.filter(w=>!(w.name===name&&w.custom));
-save("orbitWebsites",websites);renderWebsites();
-}
-
-function channelUrl(c){
-return c.url&&safeUrl(c.url)?c.url:"https://www.youtube.com/results?search_query="+encodeURIComponent(c.query||c.name);
-}
-function renderChannels(){
-const q=document.getElementById("channelFilter").value.toLowerCase();
-const list=document.getElementById("channelList");list.replaceChildren();
-const filtered=channels.filter(c=>(c.name+" "+c.desc+" "+c.query).toLowerCase().includes(q));
-document.getElementById("channelCount").textContent=filtered.length+" shown / "+channels.length+" total";
-filtered.forEach(c=>{
-const card=document.createElement("div");card.className="card";
-const title=document.createElement("h3");title.textContent="▶️ "+c.name;
-const desc=document.createElement("p");desc.textContent=c.desc;
-const actions=document.createElement("div");actions.className="card-actions";
-const open=document.createElement("button");open.className="secondary";open.textContent="Open Channel / Search ↗";open.onclick=()=>openLink(channelUrl(c));
-const fav=document.createElement("button");fav.className="fav";fav.textContent="⭐";fav.onclick=()=>toggleFavorite("youtube",c.name,channelUrl(c));
-actions.append(open,fav);
-if(c.custom){
-const remove=document.createElement("button");remove.className="fav";remove.textContent="Remove";
-remove.onclick=()=>removeChannel(c.name);actions.append(remove);
-}
-card.append(title,desc,actions);list.append(card);
-});
-document.getElementById("totalChannels").textContent=channels.length;
-}
-function addChannel(){
-const name=document.getElementById("newChannelName").value.trim();
-const url=document.getElementById("newChannelUrl").value.trim();
-const desc=document.getElementById("newChannelDesc").value.trim();
-if(!name){alert("Enter channel name.");return}
-if(url&&!safeUrl(url)){alert("Enter a valid channel URL.");return}
-if(channels.some(c=>c.name.toLowerCase()===name.toLowerCase())){alert("Channel already exists.");return}
-channels.push({name,query:name,desc:desc||"Educational channel",url,custom:true});
-save("orbitChannels",channels);
-["newChannelName","newChannelUrl","newChannelDesc"].forEach(id=>document.getElementById(id).value="");
-renderChannels();
-}
-function removeChannel(name){
-if(!confirm("Remove "+name+"?"))return;
-channels=channels.filter(c=>!(c.name===name&&c.custom));
-save("orbitChannels",channels);renderChannels();
-}
-
-function setMode(value,button){
-mode=value;
-document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
-button.classList.add("active");
-}
-function addHistory(q){
-history=history.filter(x=>x!==q);
-history.unshift(q);history=history.slice(0,10);
-save("orbitHistory",history);renderHistory();
-}
-function smartSearch(){
-const query=document.getElementById("query").value.trim();
-const cls=document.getElementById("className").value;
-const subject=document.getElementById("subject").value;
-if(!query){alert("Enter a lesson or question.");return}
-const full=[cls,subject,query].filter(Boolean).join(" ");
-const encoded=encodeURIComponent(full);
-const results=document.getElementById("searchResults");
-results.replaceChildren();addHistory(full);
-const heading=document.createElement("h3");
-heading.style.marginTop="18px";
-heading.textContent="Search results for: "+full;
-results.append(heading);
-function addResult(title,description,url){
-const div=document.createElement("div");div.className="result";
-const h=document.createElement("h3");h.textContent=title;
-const p=document.createElement("p");p.textContent=description;
-const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Open Search Results →";
-div.append(h,p,a);results.append(div);
-}
-if(mode==="all"||mode==="web"){
-addResult("Google - Educational Websites","Search the topic across the web.","https://www.google.com/search?q="+encoded+" education study");
-websites.forEach(w=>{
-let domain="";
-try{domain=new URL(w.url).hostname.replace(/^www\./,"")}catch(e){return}
-if(domain.includes("youtube.com"))return;
-addResult(w.name+" - Search Inside Website","Search "+full+" inside "+w.name,"https://www.google.com/search?q="+encodeURIComponent("site:"+domain+" "+full));
-});
-}
-if(mode==="all"||mode==="youtube"){
-addResult("YouTube - All Videos","Find videos about "+full,"https://www.youtube.com/results?search_query="+encoded);
-channels.forEach(c=>addResult(c.name+" - Lesson Search","Find "+full+" lessons from "+c.name,"https://www.youtube.com/results?search_query="+encodeURIComponent(c.query+" "+full)));
-}
-}
-function quickSearch(q){
-document.getElementById("query").value=q;
-document.getElementById("smart").scrollIntoView();
-smartSearch();
-}
-function openGoogleWeb(){
-const q=document.getElementById("webFilter").value.trim();
-openLink("https://www.google.com/search?q="+encodeURIComponent(q||"Tamil Nadu educational websites"));
-}
-function openYouTube(){
-const q=document.getElementById("channelFilter").value.trim();
-openLink("https://www.youtube.com/results?search_query="+encodeURIComponent(q||"Tamil educational channels"));
-}
-
-function toggleFavorite(type,name,url){
-const exists=favorites.some(f=>f.type===type&&f.name===name);
-if(exists)favorites=favorites.filter(f=>!(f.type===type&&f.name===name));
-else favorites.push({type,name,url});
-save("orbitFavorites",favorites);renderFavorites();
-}
-function renderFavorites(){
-const list=document.getElementById("favoriteList");list.replaceChildren();
-if(!favorites.length){
-const p=document.createElement("p");p.className="empty";p.textContent="No favourites yet. Tap ⭐ on a website or channel.";list.append(p);return;
-}
-favorites.forEach(f=>{
-const card=document.createElement("div");card.className="card";
-const title=document.createElement("h3");title.textContent="⭐ "+f.name;
-const p=document.createElement("p");p.textContent=f.type==="web"?"Website":"YouTube";
-const open=document.createElement("button");open.className="secondary";open.textContent="Open ↗";open.onclick=()=>openLink(f.url);
-const remove=document.createElement("button");remove.className="fav";remove.textContent="Remove";remove.onclick=()=>toggleFavorite(f.type,f.name,f.url);
-card.append(title,p,open,remove);list.append(card);
-});
-}
-function renderHistory(){
-const list=document.getElementById("historyList");list.replaceChildren();
-if(!history.length){
-const p=document.createElement("p");p.className="empty";p.textContent="No searches yet.";list.append(p);return;
-}
-history.forEach(q=>{
-const button=document.createElement("button");button.className="secondary";button.style.margin="5px";
-button.textContent="🔍 "+q;button.onclick=()=>quickSearch(q);list.append(button);
-});
-}
-function clearHistory(){history=[];save("orbitHistory",history);renderHistory()}
-
-document.getElementById("uploadForm").addEventListener("submit",function(e){
-e.preventDefault();
-const file=document.getElementById("uploadFile").files[0];
-if(file&&(file.type!=="application/pdf"||!file.name.toLowerCase().endsWith(".pdf"))){alert("PDF files only.");return}
-if(file&&file.size>5*1024*1024){alert("PDF must be smaller than 5 MB.");return}
-const submission={
-name:document.getElementById("userName").value.trim(),
-category:document.getElementById("uploadCategory").value,
-title:document.getElementById("uploadTitle").value.trim(),
-description:document.getElementById("uploadDescription").value.trim(),
-fileName:file?file.name:"",status:"Pending"
-};
-let pending=loadData("orbitPending",[]);
-pending.push(submission);save("orbitPending",pending);
-document.getElementById("uploadMessage").textContent="Your demo submission is saved in this browser. It is not published yet.";
-this.reset();
-});
-
-function askAI(){
-const input=document.getElementById("aiInput");
-const question=input.value.trim();if(!question)return;
-const messages=document.getElementById("chatMessages");
-const user=document.createElement("div");user.className="message user";user.textContent=question;
-const bot=document.createElement("div");bot.className="message";
-bot.textContent="ORBIT AI is not connected yet. A secure backend and AI API are required for real answers.";
-messages.append(user,bot);messages.scrollTop=messages.scrollHeight;input.value="";
-}
-document.getElementById("aiInput").addEventListener("keydown",e=>{if(e.key==="Enter")askAI()});
-document.getElementById("query").addEventListener("keydown",e=>{if(e.key==="Enter")smartSearch()});
-
-renderWebsites();
-renderChannels();
-renderFavorites();
-renderHistory();
+const websites=[["Padasalai","Tamil Nadu school resources","https://www.padasalai.net/"],["Tamil Nadu Textbooks","Official textbook resources","https://textbookcorp.tn.gov.in/"],["DIKSHA","Digital learning resources","https://diksha.gov.in/"],["Khan Academy","Free lessons and practice","https://www.khanacademy.org/"],["SWAYAM","Online courses","https://swayam.gov.in/"],["NPTEL","College-level courses","https://nptel.ac.in/"]];
+function notify(s){$("toast").textContent=s;$("toast").style.display="block";setTimeout(()=>$("toast").style.display="none",2300)}
+function go(id){$(id)?.scrollIntoView({behavior:"smooth",block:"start"});document.querySelectorAll("[data-go]").forEach(b=>b.classList.toggle("active",b.dataset.go===id))}
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.go)));
+function renderMaterials(){let c=$("classFilter").value,s=$("subjectFilter").value,q=$("materialSearch").value.toLowerCase();let list=materials.filter(m=>(!c||m.cls===c)&&(!s||m.sub===s)&&(m.title+" "+m.desc).toLowerCase().includes(q));$("materialList").replaceChildren();list.forEach(m=>{let d=document.createElement("article");d.className="resource";let h=document.createElement("h3");h.textContent=m.title;let p=document.createElement("p");p.textContent=m.cls+" • "+m.sub+" — "+m.desc;let open=document.createElement("a");open.href=m.url;open.target="_blank";open.rel="noopener noreferrer";open.className="btn small";open.textContent="Open resource ↗";let save=document.createElement("button");save.className="btn secondary small";save.textContent=saved.includes(m.title)?"Saved ✓":"☆ Save";save.onclick=()=>{saved=saved.includes(m.title)?saved.filter(x=>x!==m.title):[...saved,m.title];write("orbitSaved",saved);renderMaterials();updateStats()};d.append(h,p,open,save);$("materialList").append(d)});if(!list.length)$("materialList").textContent="No matching materials. Try another class or subject."}
+function renderTasks(){let root=$("taskList");root.replaceChildren();tasks.forEach((t,i)=>{let row=document.createElement("label");row.className="task";let cb=document.createElement("input");cb.type="checkbox";cb.checked=t.done;cb.onchange=()=>{tasks[i].done=cb.checked;write("orbitTasks",tasks);renderTasks();updateStats()};let text=document.createElement("span");text.textContent=t.text;text.style.textDecoration=t.done?"line-through":"none";text.style.opacity=t.done?".55":"1";let del=document.createElement("button");del.className="textbtn";del.textContent="Remove";del.onclick=()=>{tasks.splice(i,1);write("orbitTasks",tasks);renderTasks();updateStats()};row.append(cb,text,del);root.append(row)});let done=tasks.filter(t=>t.done).length;$("focusCount").textContent=done+" / "+tasks.length;$("focusBar").style.width=(tasks.length?done/tasks.length*100:0)+"%"}
+function updateStats(){$("doneCount").textContent=tasks.filter(t=>t.done).length;$("taskBar").style.width=(tasks.length?tasks.filter(t=>t.done).length/tasks.length*100:0)+"%";$("savedCount").textContent=saved.length;$("scoreCount").textContent=score===null?"—":score+"%"}
+function openModal(id){$(id).classList.add("show")}function closeModal(id){$(id).classList.remove("show")}
+$("saveTask").onclick=()=>{let v=$("taskInput").value.trim();if(!v)return;tasks.push({text:v,done:false});write("orbitTasks",tasks);$("taskInput").value="";closeModal("taskModal");renderTasks();updateStats();notify("Study task added.")};
+$("saveGoal").onclick=()=>{write("orbitGoal",$("goalSelect").value);closeModal("goalModal");notify("Your study goal was saved on this device.")};
+$("classFilter").onchange=renderMaterials;$("subjectFilter").onchange=renderMaterials;$("materialSearch").oninput=renderMaterials;
+$("globalSearch").oninput=()=>{$("materialSearch").value=$("globalSearch").value;go("library");renderMaterials()};
+const cards=[["What does CPU stand for?","Central Processing Unit"],["What is SQL used for?","To create, read, update and manage data in relational databases."],["What is an algorithm?","A finite sequence of steps used to solve a problem."]];
+let fi=0;function showFlash(){$("flashQuestion").textContent=cards[fi][0];$("flashAnswer").textContent=cards[fi][1];$("flashAnswer").hidden=true;$("revealBtn").textContent="Reveal answer";$("flashTopic").textContent="REVISION CARD "+(fi+1)+" OF "+cards.length}
+$("revealBtn").onclick=()=>{$("flashAnswer").hidden=!$("flashAnswer").hidden;$("revealBtn").textContent=$("flashAnswer").hidden?"Reveal answer":"Hide answer"};
+$("nextFlash").onclick=()=>{fi=(fi+1)%cards.length;showFlash()};showFlash();
+const quiz=[{q:"Which part is known as the brain of the computer?",o:["Monitor","CPU","Keyboard"],a:1},{q:"Which language is commonly used to query relational databases?",o:["SQL","HTML","CSS"],a:0},{q:"What does RAM provide?",o:["Long-term paper storage","Temporary working memory","Internet connection"],a:1}];let qi=0,correct=0,answered=false;
+function showQuiz(){$("quizStep").textContent="QUESTION "+(qi+1)+" OF "+quiz.length;$("quizQuestion").textContent=quiz[qi].q;$("quizOptions").replaceChildren();$("quizFeedback").textContent="";$("nextQuiz").style.display="none";answered=false;quiz[qi].o.forEach((v,i)=>{let b=document.createElement("button");b.className="btn secondary";b.style.textAlign="left";b.textContent=v;b.onclick=()=>{if(answered)return;answered=true;if(i===quiz[qi].a)correct++;$("quizFeedback").textContent=i===quiz[qi].a?"Correct! Well done.":"Not quite. Correct answer: "+quiz[qi].o[quiz[qi].a];$("nextQuiz").style.display="inline-block";[...$("quizOptions").children].forEach(x=>x.disabled=true)};$("quizOptions").append(b)})}
+$("nextQuiz").onclick=()=>{qi++;if(qi<quiz.length)showQuiz();else{$("quizStep").textContent="QUIZ COMPLETE";$("quizQuestion").textContent="You scored "+correct+" out of "+quiz.length+".";score=Math.round(correct/quiz.length*100);write("orbitScore",score);updateStats();$("quizOptions").replaceChildren();$("quizFeedback").textContent="Try again to improve your score."; $("nextQuiz").textContent="Try again";$("nextQuiz").onclick=()=>{qi=0;correct=0;$("nextQuiz").textContent="Next question →";$("nextQuiz").onclick=nextQuizHandler;showQuiz()}}};
+function nextQuizHandler(){qi++;if(qi<quiz.length)showQuiz();else{$("quizStep").textContent="QUIZ COMPLETE";$("quizQuestion").textContent="You scored "+correct+" out of "+quiz.length+".";score=Math.round(correct/quiz.length*100);write("orbitScore",score);updateStats();$("quizOptions").replaceChildren();$("quizFeedback").textContent="Try again to improve your score.";}}
+$("nextQuiz").onclick=nextQuizHandler;showQuiz();
+websites.forEach(w=>{let d=document.createElement("div");d.className="tile";let h=document.createElement("h3");h.textContent=w[0];let p=document.createElement("p");p.textContent=w[1];let a=document.createElement("a");a.className="btn secondary small";a.href=w[2];a.target="_blank";a.rel="noopener noreferrer";a.textContent="Visit website ↗";d.append(h,p,a);$("webResources").append(d)});
+function renderPosts(){$("posts").replaceChildren();if(!posts.length){$("posts").textContent="No posts yet. Start a helpful discussion.";return}posts.slice().reverse().forEach(p=>{let d=document.createElement("div");d.className="task";let s=document.createElement("span");s.textContent=(p.name||"Student")+": "+p.text;d.append(s);$("posts").append(d)})}
+$("postBtn").onclick=()=>{let text=$("postText").value.trim();if(!text)return;posts.push({name:$("postName").value.trim(),text});posts=posts.slice(-20);write("orbitPosts",posts);$("postText").value="";renderPosts();notify("Post saved on this device.")};
+$("aiBtn").onclick=()=>{let q=$("aiQuestion").value.trim();$("aiReply").textContent=q?"Your question is ready to send when a secure AI tutor service is connected. This demo does not generate an AI answer.": "Please enter a question first."};
+$("themeBtn").onclick=()=>{let light=document.body.dataset.theme!=="light";document.body.dataset.theme=light?"light":"";document.documentElement.style.setProperty("--bg",light?"#f3f5fb":"#090b14");document.documentElement.style.setProperty("--panel",light?"#ffffff":"#111522");document.documentElement.style.setProperty("--panel2",light?"#edf0f8":"#171d2d");document.documentElement.style.setProperty("--line",light?"#dce1ec":"#252d40");document.documentElement.style.setProperty("--text",light?"#172033":"#f4f6fc");document.documentElement.style.setProperty("--muted",light?"#647087":"#9aa5bb");$("themeBtn").textContent=light?"☾":"☼";write("orbitLight",light)};
+$("langBtn").onclick=()=>notify("Tamil language content can be added as the next localization step.");
+if(read("orbitLight",false))$("themeBtn").click();
+renderMaterials();renderTasks();updateStats();renderPosts();
 </script>
-
 </body>
 </html>
